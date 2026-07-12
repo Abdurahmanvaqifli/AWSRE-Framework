@@ -30,8 +30,6 @@ from watermarking.registry import (
     watermarker,
 )
 
-load_builtin_watermarkers()
-
 __all__ = [
     "BaseWatermarker",
     "EmbeddingResult",
