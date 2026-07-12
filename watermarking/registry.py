@@ -137,10 +137,13 @@ def register_watermarker(
             "Watermarker class must define a valid METHOD attribute."
         )
 
-    if (
-        method in _WATERMARKER_REGISTRY
-        and not overwrite
-    ):
+  if method in _WATERMARKER_REGISTRY:
+    existing_class = _WATERMARKER_REGISTRY[method]
+
+    if existing_class is watermarker_class:
+        return watermarker_class
+
+    if not overwrite:
         raise WatermarkerAlreadyRegisteredError(
             f"Watermarker already registered: {method}"
         )
