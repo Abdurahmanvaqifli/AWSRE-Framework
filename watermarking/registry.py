@@ -1,30 +1,28 @@
 """
 AWSRE Watermarking Registry
 
-This module provides a central registry and factory for all
-watermarking algorithms supported by AWSRE.
+This module provides a central registry and factory interface
+for all watermarking algorithms supported by AWSRE.
 
-The rest of the platform does not need to import DCT, DWT,
-DCT-SVD, DWT-SVD or Block-SVD directly.
+The registry allows the rest of the framework to use a common API:
 
-Example
--------
-from watermarking.registry import create_watermarker
+    create_watermarker(method="DCT", alpha=20)
+    embed(method="DCT", host=host, watermark_data=watermark, alpha=20)
+    extract(
+        method="DCT",
+        original=host,
+        watermarked=watermarked,
+        watermark_shape=(32, 32),
+        alpha=20,
+    )
 
-watermarker = create_watermarker(
-    method="DCT",
-    alpha=10
-)
-
-embedding_result = watermarker.embed(
-    host,
-    watermark
-)
+No Streamlit code is used in this module.
 """
 
 from __future__ import annotations
 
-from typing import Dict, List, Type
+import importlib
+from typing import Any, Dict, List, Type
 
 from watermarking.base import BaseWatermarker
 
@@ -35,19 +33,20 @@ from watermarking.base import BaseWatermarker
 
 class WatermarkerRegistryError(Exception):
     """
-    Base exception for registry-related errors.
+    Base exception for watermarking registry errors.
     """
 
 
 class WatermarkerNotFoundError(WatermarkerRegistryError):
     """
-    Raised when an unknown watermarking method is requested.
+    Raised when a requested method is not registered.
     """
 
 
 class WatermarkerAlreadyRegisteredError(WatermarkerRegistryError):
     """
-    Raised when a method name is registered more than once.
+    Raised when another class is already registered
+    under the same method name.
     """
 
 
@@ -58,20 +57,41 @@ class WatermarkerAlreadyRegisteredError(WatermarkerRegistryError):
 _WATERMARKER_REGISTRY: Dict[str, Type[BaseWatermarker]] = {}
 
 
+BUILTIN_WATERMARKER_MODULES = (
+    "watermarking.dct",
+    "watermarking.dwt",
+    "watermarking.dct_svd",
+    "watermarking.dwt_svd",
+    "watermarking.block_svd",
+)
+
+
+# ============================================================
+# METHOD NAME NORMALIZATION
+# ============================================================
+
 def normalize_method_name(method: str) -> str:
     """
-    Normalize watermarking method names.
+    Normalize a watermarking method name.
 
     Examples
     --------
-    dct-svd -> DCT-SVD
-    block_svd -> BLOCK-SVD
-    Dwt Svd -> DWT-SVD
+    "dct"       -> "DCT"
+    "dct_svd"   -> "DCT-SVD"
+    "dwt svd"   -> "DWT-SVD"
+    "blocks-vd" -> normalized input form
     """
     if not isinstance(method, str):
-        raise TypeError("Method name must be a string.")
+        raise TypeError(
+            "Watermarking method name must be a string."
+        )
 
     normalized = method.strip().upper()
+
+    if not normalized:
+        raise ValueError(
+            "Watermarking method name cannot be empty."
+        )
 
     normalized = normalized.replace("_", "-")
     normalized = normalized.replace(" ", "-")
@@ -80,9 +100,10 @@ def normalize_method_name(method: str) -> str:
         normalized = normalized.replace("--", "-")
 
     aliases = {
-        "BLOCKSVD": "BLOCK-SVD",
         "DCTSVD": "DCT-SVD",
         "DWTSVD": "DWT-SVD",
+        "BLOCKSVD": "BLOCK-SVD",
+        "BLOCK-SVD": "BLOCK-SVD",
     }
 
     return aliases.get(normalized, normalized)
@@ -100,20 +121,27 @@ def register_watermarker(
     """
     Register a watermarking class.
 
-    The class must inherit from BaseWatermarker and define
-    a non-empty METHOD attribute.
+    The supplied class must:
+
+    - inherit from BaseWatermarker;
+    - define a valid METHOD attribute;
+    - use a unique method name.
+
+    Re-registering the exact same class is treated as a
+    successful no-op. This makes module imports idempotent.
 
     Parameters
     ----------
     watermarker_class:
-        Watermarker class to register.
+        Class to register.
     overwrite:
-        Replace an existing registration when True.
+        Replace another class already registered under the
+        same method name.
 
     Returns
     -------
     Type[BaseWatermarker]
-        The registered class.
+        Registered class.
     """
     if not isinstance(watermarker_class, type):
         raise TypeError(
@@ -125,30 +153,62 @@ def register_watermarker(
         BaseWatermarker,
     ):
         raise TypeError(
-            "Watermarker must inherit from BaseWatermarker."
+            "Registered class must inherit from BaseWatermarker."
         )
 
-    method = normalize_method_name(
-        getattr(watermarker_class, "METHOD", "")
+    raw_method = getattr(
+        watermarker_class,
+        "METHOD",
+        "",
     )
 
-    if not method or method == "BASE":
+    method = normalize_method_name(
+        raw_method
+    )
+
+    if method == "BASE":
         raise ValueError(
-            "Watermarker class must define a valid METHOD attribute."
+            "A concrete watermarker must define a METHOD "
+            "different from 'BASE'."
         )
 
-  if method in _WATERMARKER_REGISTRY:
-    existing_class = _WATERMARKER_REGISTRY[method]
+    existing_class = _WATERMARKER_REGISTRY.get(
+        method
+    )
 
-    if existing_class is watermarker_class:
-        return watermarker_class
+    if existing_class is not None:
+        # Same class imported more than once:
+        # registration is already correct.
+        if existing_class is watermarker_class:
+            return watermarker_class
 
-    if not overwrite:
-        raise WatermarkerAlreadyRegisteredError(
-            f"Watermarker already registered: {method}"
+        # In some Python execution modes, the same logical class
+        # may be loaded as a new class object. Treat it as equivalent
+        # when module and class names are identical.
+        same_logical_class = (
+            existing_class.__name__
+            == watermarker_class.__name__
+            and existing_class.__module__
+            == watermarker_class.__module__
         )
 
-    _WATERMARKER_REGISTRY[method] = watermarker_class
+        if same_logical_class:
+            _WATERMARKER_REGISTRY[
+                method
+            ] = watermarker_class
+
+            return watermarker_class
+
+        if not overwrite:
+            raise WatermarkerAlreadyRegisteredError(
+                f"Method '{method}' is already registered by "
+                f"{existing_class.__module__}."
+                f"{existing_class.__name__}."
+            )
+
+    _WATERMARKER_REGISTRY[
+        method
+    ] = watermarker_class
 
     return watermarker_class
 
@@ -157,7 +217,7 @@ def watermarker(
     watermarker_class: Type[BaseWatermarker],
 ) -> Type[BaseWatermarker]:
     """
-    Decorator for registering watermarking classes.
+    Class decorator for registering a watermarker.
 
     Example
     -------
@@ -170,40 +230,53 @@ def watermarker(
     )
 
 
-def unregister_watermarker(method: str) -> bool:
+def unregister_watermarker(
+    method: str,
+) -> bool:
     """
-    Remove a watermarking method from the registry.
+    Remove a method from the registry.
 
-    Returns True when the method existed.
+    Returns
+    -------
+    bool
+        True when the method existed and was removed.
     """
-    normalized = normalize_method_name(method)
+    normalized = normalize_method_name(
+        method
+    )
 
     if normalized not in _WATERMARKER_REGISTRY:
         return False
 
-    del _WATERMARKER_REGISTRY[normalized]
+    del _WATERMARKER_REGISTRY[
+        normalized
+    ]
 
     return True
 
 
 def clear_registry() -> None:
     """
-    Remove all registered watermarking methods.
+    Remove every registered method.
 
-    Mainly intended for testing.
+    Mainly intended for isolated tests.
     """
     _WATERMARKER_REGISTRY.clear()
 
 
 # ============================================================
-# LOOKUP AND FACTORY
+# LOOKUP
 # ============================================================
 
-def is_registered(method: str) -> bool:
+def is_registered(
+    method: str,
+) -> bool:
     """
-    Check whether a method is registered.
+    Return whether a method is registered.
     """
-    normalized = normalize_method_name(method)
+    normalized = normalize_method_name(
+        method
+    )
 
     return normalized in _WATERMARKER_REGISTRY
 
@@ -212,60 +285,99 @@ def get_watermarker_class(
     method: str,
 ) -> Type[BaseWatermarker]:
     """
-    Return the class registered for a method.
+    Return the registered class for a method.
+
+    Raises
+    ------
+    WatermarkerNotFoundError
+        When no class is registered under the requested name.
     """
-    normalized = normalize_method_name(method)
+    normalized = normalize_method_name(
+        method
+    )
 
-    if normalized not in _WATERMARKER_REGISTRY:
-        available = ", ".join(
-            sorted(_WATERMARKER_REGISTRY.keys())
+    watermarker_class = _WATERMARKER_REGISTRY.get(
+        normalized
+    )
+
+    if watermarker_class is None:
+        available_methods = list_registered_methods()
+
+        available_text = (
+            ", ".join(available_methods)
+            if available_methods
+            else "none"
         )
-
-        if not available:
-            available = "none"
 
         raise WatermarkerNotFoundError(
-            f"Unknown watermarking method: {normalized}. "
-            f"Available methods: {available}"
+            f"Unknown watermarking method: '{normalized}'. "
+            f"Registered methods: {available_text}."
         )
 
-    return _WATERMARKER_REGISTRY[normalized]
+    return watermarker_class
 
+
+# ============================================================
+# FACTORY
+# ============================================================
 
 def create_watermarker(
     method: str,
     alpha: float | None = None,
-    **kwargs,
+    **kwargs: Any,
 ) -> BaseWatermarker:
     """
-    Create a watermarker instance.
+    Create a registered watermarker instance.
+
+    Built-in methods are loaded automatically when necessary.
 
     Parameters
     ----------
     method:
-        Registered method name.
+        Method name, for example DCT or DWT-SVD.
     alpha:
-        Embedding strength. If omitted, the method's default
-        alpha value is used.
+        Embedding strength. When omitted, the algorithm's
+        DEFAULT_ALPHA value is used.
     kwargs:
-        Additional constructor parameters for future methods.
+        Additional algorithm-specific constructor options.
 
     Returns
     -------
     BaseWatermarker
-        Initialized watermarker instance.
+        Initialized algorithm instance.
     """
-    watermarker_class = get_watermarker_class(
+    normalized = normalize_method_name(
         method
     )
 
-    if alpha is None:
-        alpha = watermarker_class.DEFAULT_ALPHA
+    if normalized not in _WATERMARKER_REGISTRY:
+        load_builtin_watermarkers()
 
-    return watermarker_class(
+    watermarker_class = get_watermarker_class(
+        normalized
+    )
+
+    if alpha is None:
+        alpha = getattr(
+            watermarker_class,
+            "DEFAULT_ALPHA",
+            10,
+        )
+
+    instance = watermarker_class(
         alpha=alpha,
         **kwargs,
     )
+
+    if not isinstance(
+        instance,
+        BaseWatermarker,
+    ):
+        raise TypeError(
+            "Factory created an invalid watermarker instance."
+        )
+
+    return instance
 
 
 # ============================================================
@@ -285,50 +397,53 @@ def registry_size() -> int:
     """
     Return the number of registered methods.
     """
-    return len(_WATERMARKER_REGISTRY)
+    return len(
+        _WATERMARKER_REGISTRY
+    )
 
 
-def get_registry_info() -> List[dict]:
+def get_registry_info() -> List[Dict[str, Any]]:
     """
-    Return metadata for all registered methods.
+    Return descriptive metadata for registered algorithms.
     """
-    info_rows = []
+    rows: List[Dict[str, Any]] = []
 
     for method in list_registered_methods():
-        watermarker_class = _WATERMARKER_REGISTRY[
+        algorithm_class = _WATERMARKER_REGISTRY[
             method
         ]
 
-        info_rows.append({
+        rows.append({
             "method": method,
-            "class_name": watermarker_class.__name__,
+            "class_name": algorithm_class.__name__,
+            "module": algorithm_class.__module__,
             "description": getattr(
-                watermarker_class,
+                algorithm_class,
                 "DESCRIPTION",
                 "",
             ),
             "default_alpha": getattr(
-                watermarker_class,
+                algorithm_class,
                 "DEFAULT_ALPHA",
                 None,
             ),
             "supports_grayscale": getattr(
-                watermarker_class,
+                algorithm_class,
                 "SUPPORTS_GRAYSCALE",
                 False,
             ),
             "supports_rgb": getattr(
-                watermarker_class,
+                algorithm_class,
                 "SUPPORTS_RGB",
                 False,
             ),
         })
 
-    return info_rows
+    return rows
 
 
 # ============================================================
-# HIGH-LEVEL API
+# HIGH-LEVEL FRAMEWORK API
 # ============================================================
 
 def embed(
@@ -336,18 +451,18 @@ def embed(
     host,
     watermark_data,
     alpha: float | None = None,
-    **kwargs,
+    **kwargs: Any,
 ):
     """
-    Create the requested watermarker and embed a watermark.
+    Embed a watermark through the central registry.
     """
-    instance = create_watermarker(
+    algorithm = create_watermarker(
         method=method,
         alpha=alpha,
         **kwargs,
     )
 
-    return instance.embed(
+    return algorithm.embed(
         host,
         watermark_data,
     )
@@ -359,18 +474,18 @@ def extract(
     watermarked,
     watermark_shape,
     alpha: float | None = None,
-    **kwargs,
+    **kwargs: Any,
 ):
     """
-    Create the requested watermarker and extract a watermark.
+    Extract a watermark through the central registry.
     """
-    instance = create_watermarker(
+    algorithm = create_watermarker(
         method=method,
         alpha=alpha,
         **kwargs,
     )
 
-    return instance.extract(
+    return algorithm.extract(
         original,
         watermarked,
         watermark_shape,
@@ -378,72 +493,86 @@ def extract(
 
 
 # ============================================================
-# METHOD AUTO-LOADING
+# BUILT-IN ALGORITHM LOADING
 # ============================================================
 
-def load_builtin_watermarkers() -> None:
+def load_builtin_watermarkers(
+    *,
+    strict: bool = False,
+) -> List[str]:
     """
-    Import built-in AWSRE algorithms.
+    Import all implemented AWSRE watermarking modules.
 
-    Importing each module causes its class to register through
-    the @watermarker decorator.
+    During early development, empty or not-yet-implemented method
+    modules may exist. Import failures caused by those modules can
+    be skipped when strict=False.
 
-    Modules that have not yet been implemented are skipped
-    safely during early framework development.
+    Parameters
+    ----------
+    strict:
+        Re-raise import errors when True.
+
+    Returns
+    -------
+    List[str]
+        Registered method names after loading.
     """
-    module_names = [
-        "watermarking.dct",
-        "watermarking.dwt",
-        "watermarking.dct_svd",
-        "watermarking.dwt_svd",
-        "watermarking.block_svd",
-    ]
-
-    for module_name in module_names:
+    for module_name in BUILTIN_WATERMARKER_MODULES:
         try:
-            __import__(module_name)
-
-        except ImportError as exc:
-            missing_module = getattr(
-                exc,
-                "name",
-                "",
+            importlib.import_module(
+                module_name
             )
 
-            # Skip only when the target algorithm module
-            # itself is still missing.
-            if missing_module == module_name:
-                continue
+        except (
+            ImportError,
+            AttributeError,
+        ):
+            if strict:
+                raise
 
-            raise
+            continue
+
+    return list_registered_methods()
+
+
+def reload_builtin_watermarkers() -> List[str]:
+    """
+    Reload already imported built-in method modules.
+
+    Intended mainly for notebook development and debugging.
+    """
+    for module_name in BUILTIN_WATERMARKER_MODULES:
+        try:
+            module = importlib.import_module(
+                module_name
+            )
+
+            importlib.reload(
+                module
+            )
+
+        except (
+            ImportError,
+            AttributeError,
+        ):
+            continue
+
+    return list_registered_methods()
 
 
 # ============================================================
-# SELF TEST
+# DIAGNOSTICS
 # ============================================================
 
-if __name__ == "__main__":
-    print("=" * 68)
-    print("AWSRE Watermarking Registry")
-    print("=" * 68)
-
-    load_builtin_watermarkers()
-
-    print(
-        "\nRegistered methods:",
-        registry_size(),
-    )
-
-    methods = list_registered_methods()
-
-    if not methods:
-        print(
-            "\nNo algorithms are registered yet. "
-            "This is expected before dct.py is implemented."
-        )
-    else:
-        for item in get_registry_info():
-            print(
-                f"- {item['method']} "
-                f"({item['class_name']})"
-            )
+def registry_diagnostics() -> Dict[str, Any]:
+    """
+    Return a diagnostic snapshot of the registry.
+    """
+    return {
+        "registered_count": registry_size(),
+        "registered_methods": list_registered_methods(),
+        "algorithms": get_registry_info(),
+        "builtin_modules": list(
+            BUILTIN_WATERMARKER_MODULES
+        ),
+    }
