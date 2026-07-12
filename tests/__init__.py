@@ -1,1 +1,1 @@
-
+# AWSRE tests package
