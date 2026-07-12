@@ -147,48 +147,55 @@ def calculate_ssim(
 # BER
 # ==========================================================
 
+def normalize_binary_watermark(watermark):
+    """
+    Convert 0/1, 0/255 or floating-point watermark arrays
+    into a binary uint8 array containing only 0 and 1.
+    """
+    watermark = np.asarray(watermark)
+
+    if watermark.size == 0:
+        raise ValueError("Watermark array is empty.")
+
+    watermark_float = watermark.astype(np.float32)
+
+    if np.max(watermark_float) <= 1.0:
+        binary = watermark_float >= 0.5
+    else:
+        binary = watermark_float >= 127.5
+
+    return binary.astype(np.uint8)
+
+
 def calculate_ber(
-
     original_watermark,
-
     extracted_watermark,
-
 ):
+    """
+    Calculate Bit Error Rate for binary watermarks.
 
+    Supports both:
+    - 0/1 arrays
+    - 0/255 arrays
+    """
     validate_images(
-
         original_watermark,
-
         extracted_watermark,
-
     )
 
-    original = (
+    original = normalize_binary_watermark(
+        original_watermark
+    )
 
-        original_watermark > 127
+    extracted = normalize_binary_watermark(
+        extracted_watermark
+    )
 
-    ).astype(np.uint8)
-
-    extracted = (
-
-        extracted_watermark > 127
-
-    ).astype(np.uint8)
-
-    total = original.size
-
-    errors = np.sum(
-
+    errors = np.count_nonzero(
         original != extracted
-
     )
 
-    return float(
-
-        errors / total
-
-    )
-
+    return float(errors / original.size)
 
 # ==========================================================
 # NORMALIZED CORRELATION
