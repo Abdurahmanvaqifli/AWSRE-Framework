@@ -82,3 +82,4 @@ __all__ = [
     "get_generator_registry_info",
     "generator_registry_diagnostics",
 ]
+load_builtin_generators()
