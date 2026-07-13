@@ -38,6 +38,20 @@ from benchmark.watermark_generator.signature_generator import (
     SignatureWatermarkGenerator,
     generate_signature_watermark,
 )
+
+from benchmark.watermark_generator.registry import (
+    create_generator,
+    generate_watermark,
+    generator_registry_diagnostics,
+    generator_registry_size,
+    get_generator_class,
+    get_generator_registry_info,
+    is_generator_registered,
+    list_registered_generators,
+    load_builtin_generators,
+    register_generator,
+    watermark_generator,
+)
 __all__ = [
     "BaseWatermarkGenerator",
     "GeneratedWatermark",
@@ -56,4 +70,15 @@ __all__ = [
     "generate_logo_watermark",
     "SignatureWatermarkGenerator",
     "generate_signature_watermark",
+    "create_generator",
+    "generate_watermark",
+    "register_generator",
+    "watermark_generator",
+    "load_builtin_generators",
+    "is_generator_registered",
+    "get_generator_class",
+    "list_registered_generators",
+    "generator_registry_size",
+    "get_generator_registry_info",
+    "generator_registry_diagnostics",
 ]
