@@ -202,57 +202,74 @@ def calculate_ber(
 # ==========================================================
 
 def calculate_correlation(
-
     original,
-
     extracted,
-
 ):
+    """
+    Calculate normalized correlation safely.
+
+    Returns 0.0 when correlation is undefined, such as when
+    one of the watermark arrays contains no signal energy.
+    """
 
     validate_images(
-
         original,
-
         extracted,
-
     )
 
-    a = original.astype(
+    a = np.asarray(
+        original,
+        dtype=np.float64,
+    ).reshape(-1)
 
-        np.float64
+    b = np.asarray(
+        extracted,
+        dtype=np.float64,
+    ).reshape(-1)
 
-    ).flatten()
+    if (
+        not np.all(np.isfinite(a))
+        or not np.all(np.isfinite(b))
+    ):
+        return 0.0
 
-    b = extracted.astype(
-
-        np.float64
-
-    ).flatten()
-
-    numerator = np.sum(
-
-        a * b
-
+    numerator = float(
+        np.dot(a, b)
     )
 
-    denominator = np.sqrt(
-
-        np.sum(a ** 2)
-
-        *
-
-        np.sum(b ** 2)
-
+    energy_a = float(
+        np.dot(a, a)
     )
 
-    if denominator == 0:
+    energy_b = float(
+        np.dot(b, b)
+    )
 
+    denominator = float(
+        np.sqrt(
+            energy_a * energy_b
+        )
+    )
+
+    if (
+        not np.isfinite(denominator)
+        or denominator <= 1e-12
+    ):
+        return 0.0
+
+    correlation = (
+        numerator / denominator
+    )
+
+    if not np.isfinite(correlation):
         return 0.0
 
     return float(
-
-        numerator / denominator
-
+        np.clip(
+            correlation,
+            -1.0,
+            1.0,
+        )
     )
   # ==========================================================
 # RGB METRICS
