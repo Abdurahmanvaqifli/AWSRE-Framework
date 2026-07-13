@@ -95,5 +95,16 @@ __all__ = [
     "generator_registry_size",
     "get_generator_registry_info",
     "generator_registry_diagnostics",
+    "create_generator",
+    "generate_watermark",
+    "register_generator",
+    "watermark_generator",
+    "load_builtin_generators",
+    "is_generator_registered",
+    "get_generator_class",
+    "list_registered_generators",
+    "generator_registry_size",
+    "get_generator_registry_info",
+    "generator_registry_diagnostics",
 ]
 load_builtin_generators()
