@@ -19,6 +19,12 @@ from benchmark.watermark_generator.text_generator import (
     TextWatermarkGenerator,
     generate_text_watermark,
 )
+
+from benchmark.watermark_generator.qr_generator import (
+    QRErrorCorrection,
+    QRCodeWatermarkGenerator,
+    generate_qr_watermark,
+)
 __all__ = [
     "BaseWatermarkGenerator",
     "GeneratedWatermark",
@@ -29,4 +35,7 @@ __all__ = [
     "TextFont",
     "TextWatermarkGenerator",
     "generate_text_watermark",
+    "QRErrorCorrection",
+    "QRCodeWatermarkGenerator",
+    "generate_qr_watermark",
 ]
