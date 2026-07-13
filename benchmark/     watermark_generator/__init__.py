@@ -25,6 +25,19 @@ from benchmark.watermark_generator.qr_generator import (
     QRCodeWatermarkGenerator,
     generate_qr_watermark,
 )
+from benchmark.watermark_generator.image_based_generator import (
+    ImageBasedWatermarkGenerator,
+)
+
+from benchmark.watermark_generator.logo_generator import (
+    LogoWatermarkGenerator,
+    generate_logo_watermark,
+)
+
+from benchmark.watermark_generator.signature_generator import (
+    SignatureWatermarkGenerator,
+    generate_signature_watermark,
+)
 __all__ = [
     "BaseWatermarkGenerator",
     "GeneratedWatermark",
@@ -38,4 +51,9 @@ __all__ = [
     "QRErrorCorrection",
     "QRCodeWatermarkGenerator",
     "generate_qr_watermark",
+    "ImageBasedWatermarkGenerator",
+    "LogoWatermarkGenerator",
+    "generate_logo_watermark",
+    "SignatureWatermarkGenerator",
+    "generate_signature_watermark",
 ]
