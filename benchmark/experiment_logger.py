@@ -22,7 +22,7 @@ import numpy as np
 import pandas as pd
 
 
-LOGGER_VERSION = "1.0.1"
+LOGGER_VERSION = "1.1.0"
 
 DEFAULT_EXPERIMENT_COLUMNS = [
     "experiment_id", "experiment_key", "timestamp_utc",
@@ -54,6 +54,8 @@ DEFAULT_ERROR_COLUMNS = [
 
 VALID_STATUSES = {"PENDING", "RUNNING", "SUCCESS", "FAILED", "SKIPPED"}
 
+REQUIRED_SUCCESS_METRICS = ("mse", "psnr", "ssim", "ber", "correlation")
+
 
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
@@ -65,6 +67,21 @@ def first_not_none(*values: Any, default: Any = None) -> Any:
         if value is not None:
             return value
     return default
+
+
+def finite_float(value: Any, *, name: str) -> float:
+    """Validate a required numeric field without rejecting zero."""
+    if value is None:
+        raise ValueError(f"Required metric '{name}' is missing.")
+
+    result = float(value)
+
+    if not np.isfinite(result):
+        raise ValueError(
+            f"Required metric '{name}' is not finite: {value!r}."
+        )
+
+    return result
 
 
 def make_json_safe(value: Any) -> Any:
@@ -456,6 +473,13 @@ def flatten_experiment_record(record: Dict[str, Any]) -> Dict[str, Any]:
         if column in safe and safe[column] is not None:
             row[column] = safe[column]
 
+    if str(row.get("status", "")).upper() == "SUCCESS":
+        for metric_name in REQUIRED_SUCCESS_METRICS:
+            row[metric_name] = finite_float(
+                row.get(metric_name),
+                name=metric_name,
+            )
+
     return make_json_safe(row)
 
 
@@ -582,6 +606,8 @@ class ExperimentLogger:
             raw["experiment_json_path"] = str(json_path)
 
             try:
+                flattened = flatten_experiment_record(raw)
+
                 if self.config.save_json_per_experiment:
                     atomic_write_json(json_path, raw)
                     self._verify_json(
@@ -589,7 +615,6 @@ class ExperimentLogger:
                         expected_experiment_id=experiment_id,
                     )
 
-                flattened = flatten_experiment_record(raw)
                 append_csv_row(
                     self.config.csv_path,
                     flattened,
