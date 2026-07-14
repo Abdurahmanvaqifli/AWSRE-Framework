@@ -2,7 +2,7 @@
 AWSRE Metrics Module
 
 Backward-compatible, defensive implementations for image-quality and
-watermark-robustness metrics.
+watermark-robustness metrics, including legacy AWSRE aliases.
 """
 
 from __future__ import annotations
@@ -241,6 +241,20 @@ def calculate_robustness_metrics(
         extracted_watermark,
     )
 
+
+
+def calculate_watermark_metrics(
+    original_watermark: Any,
+    extracted_watermark: Any,
+) -> Dict[str, float]:
+    """
+    Backward-compatible alias used by the AWSRE smoke test and
+    older framework modules.
+    """
+    return evaluate_extraction(
+        original_watermark,
+        extracted_watermark,
+    )
 
 def calculate_summary_metrics(
     original_image: Any,
