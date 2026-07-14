@@ -183,25 +183,72 @@ def calculate_correlation(
 
 
 def evaluate_embedding(
-    original_image: Any,
-    watermarked_image: Any,
+    original_image,
+    watermarked_image,
+    original_watermark=None,
+    extracted_watermark=None,
     *,
     data_range: float = 255.0,
-) -> Dict[str, float]:
-    return {
-        "mse": calculate_mse(original_image, watermarked_image),
-        "psnr": calculate_psnr(
+):
+    """
+    Calculate a complete embedding evaluation.
+
+    With two image arguments:
+    - MSE
+    - PSNR
+    - SSIM
+
+    With all four arguments:
+    - MSE
+    - PSNR
+    - SSIM
+    - BER
+    - Correlation
+    """
+    metrics = {
+        "MSE": calculate_mse(
+            original_image,
+            watermarked_image,
+        ),
+        "PSNR": calculate_psnr(
             original_image,
             watermarked_image,
             data_range=data_range,
         ),
-        "ssim": calculate_ssim(
+        "SSIM": calculate_ssim(
             original_image,
             watermarked_image,
             data_range=data_range,
         ),
     }
 
+    if (
+        original_watermark is None
+        and extracted_watermark is None
+    ):
+        return metrics
+
+    if (
+        original_watermark is None
+        or extracted_watermark is None
+    ):
+        raise ValueError(
+            "Both original_watermark and extracted_watermark "
+            "must be supplied together."
+        )
+
+    metrics.update({
+        "BER": calculate_ber(
+            original_watermark,
+            extracted_watermark,
+        ),
+        "Correlation": calculate_correlation(
+            original_watermark,
+            extracted_watermark,
+        ),
+    })
+
+    return metrics
 
 def evaluate_extraction(
     original_watermark: Any,
