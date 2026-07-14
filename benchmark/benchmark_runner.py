@@ -95,6 +95,25 @@ def stable_text_hash(
     ).hexdigest()
 
 
+def ensure_finite_metric(
+    value: Any,
+    *,
+    name: str,
+) -> float:
+    """Return a required metric as a finite Python float."""
+    if value is None:
+        raise ValueError(f"Required metric '{name}' is missing.")
+
+    result = float(value)
+
+    if not np.isfinite(result):
+        raise ValueError(
+            f"Required metric '{name}' is not finite: {value!r}."
+        )
+
+    return result
+
+
 def build_experiment_key(
     *,
     host_hash: str,
@@ -519,19 +538,28 @@ class BenchmarkRunner:
             )
         )
 
-        mse = calculate_mse(
-            host.image,
-            embedding_result.watermarked_image,
+        mse = ensure_finite_metric(
+            calculate_mse(
+                host.image,
+                embedding_result.watermarked_image,
+            ),
+            name="mse",
         )
 
-        psnr = calculate_psnr(
-            host.image,
-            embedding_result.watermarked_image,
+        psnr = ensure_finite_metric(
+            calculate_psnr(
+                host.image,
+                embedding_result.watermarked_image,
+            ),
+            name="psnr",
         )
 
-        ssim = calculate_ssim(
-            host.image,
-            embedding_result.watermarked_image,
+        ssim = ensure_finite_metric(
+            calculate_ssim(
+                host.image,
+                embedding_result.watermarked_image,
+            ),
+            name="ssim",
         )
 
         return (
@@ -633,16 +661,20 @@ class BenchmarkRunner:
                 .extracted_watermark
             )
 
-            ber = calculate_ber(
-                watermark_result.image,
-                extracted_watermark,
+            ber = ensure_finite_metric(
+                calculate_ber(
+                    watermark_result.image,
+                    extracted_watermark,
+                ),
+                name="ber",
             )
 
-            correlation = (
+            correlation = ensure_finite_metric(
                 calculate_correlation(
                     watermark_result.image,
                     extracted_watermark,
-                )
+                ),
+                name="correlation",
             )
 
             extracted_successfully = bool(
@@ -775,6 +807,14 @@ class BenchmarkRunner:
                 "detection_result": (
                     detection_result
                 ),
+
+                # Flat metric copies make zero values explicit and
+                # protect them through every serialization layer.
+                "mse": imperceptibility_metrics["mse"],
+                "psnr": imperceptibility_metrics["psnr"],
+                "ssim": imperceptibility_metrics["ssim"],
+                "ber": ber,
+                "correlation": correlation,
 
                 "status": "SUCCESS",
                 "error_message": "",
