@@ -30,6 +30,8 @@ from watermarking.registry import (
     watermarker,
 )
 
+from watermarking.dct_svd import DCTSVDWatermarker
+
 __all__ = [
     "BaseWatermarker",
     "EmbeddingResult",
@@ -49,4 +51,5 @@ __all__ = [
     "calculate_ber",
     "calculate_correlation",
     "evaluate_embedding",
+    "DCTSVDWatermarker",
 ]
