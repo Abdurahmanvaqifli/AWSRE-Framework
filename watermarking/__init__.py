@@ -32,6 +32,13 @@ from watermarking.registry import (
 
 from watermarking.dct_svd import DCTSVDWatermarker
 
+from watermarking.block_svd import (
+    BlockSVDMetadata,
+    BlockSVDWatermarker,
+    embed_block_svd,
+    extract_block_svd,
+)
+
 __all__ = [
     "BaseWatermarker",
     "EmbeddingResult",
@@ -52,4 +59,8 @@ __all__ = [
     "calculate_correlation",
     "evaluate_embedding",
     "DCTSVDWatermarker",
+    "BlockSVDMetadata",
+    "BlockSVDWatermarker",
+    "embed_block_svd",
+    "extract_block_svd",
 ]
