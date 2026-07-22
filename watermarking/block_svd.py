@@ -340,7 +340,6 @@ def _singular_values(block: np.ndarray) -> np.ndarray:
 # ---------------------------------------------------------------------
 # Main algorithm
 # ---------------------------------------------------------------------
-
 @register_watermarker("block_svd")
 class BlockSVDWatermarker(BaseWatermarker):
     """
