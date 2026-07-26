@@ -30,19 +30,22 @@ from watermarking.registry import (
     watermarker,
 )
 
-from watermarking.dct_svd import DCTSVDWatermarker
+from watermarking.dct_svd import (
+    DCTSVDWatermarker,
+)
 
 from watermarking.block_svd import (
-    BlockSVDMetadata,
     BlockSVDWatermarker,
     embed_block_svd,
     extract_block_svd,
 )
 
+
 __all__ = [
     "BaseWatermarker",
     "EmbeddingResult",
     "ExtractionResult",
+
     "create_watermarker",
     "embed",
     "extract",
@@ -50,16 +53,19 @@ __all__ = [
     "watermarker",
     "is_registered",
     "list_registered_methods",
+    "load_builtin_watermarkers",
     "registry_size",
     "get_registry_info",
+
     "calculate_mse",
     "calculate_psnr",
     "calculate_ssim",
     "calculate_ber",
     "calculate_correlation",
     "evaluate_embedding",
+
     "DCTSVDWatermarker",
-    "BlockSVDMetadata",
+
     "BlockSVDWatermarker",
     "embed_block_svd",
     "extract_block_svd",
