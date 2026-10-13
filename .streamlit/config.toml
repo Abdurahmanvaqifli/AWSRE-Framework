@@ -1,0 +1,8 @@
+# AWSRE visual theme (same teal as the presentation site).
+[theme]
+base = "light"
+primaryColor = "#0A6C70"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F1F5F4"
+textColor = "#13201F"
+font = "sans serif"
