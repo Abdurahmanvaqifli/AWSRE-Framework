@@ -59,6 +59,7 @@ _WATERMARKER_REGISTRY: Dict[str, Type[BaseWatermarker]] = {}
 
 BUILTIN_WATERMARKER_MODULES = (
     "watermarking.dct",
+    "watermarking.dct_qim",
     "watermarking.dwt",
     "watermarking.dct_svd",
     "watermarking.dwt_svd",
