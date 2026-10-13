@@ -21,6 +21,7 @@ from typing import Any, Dict, Iterable, Tuple
 import cv2
 import numpy as np
 
+from watermarking.adaptive_strength import compute_block_strength_map
 from watermarking.base import (
     BaseWatermarker,
     EmbeddingResult,
@@ -752,6 +753,140 @@ class DCTWatermarker(BaseWatermarker):
         })
 
         return information
+
+
+@watermarker
+class DCTAdaptiveWatermarker(DCTWatermarker):
+    """
+    Content-adaptive variant of DCTWatermarker -- THE dissertation's core
+    scientific contribution. See watermarking/adaptive_strength.py for the
+    full rationale: instead of adding/subtracting the same fixed alpha to
+    every 8x8 block's mid-frequency coefficients, each block's own local
+    texture/edge content scales alpha up (busy, high-edge blocks -- the
+    eye masks more distortion there, per HVS/JND theory) or down (smooth,
+    flat blocks -- the eye notices distortion there most).
+
+    Everything else -- block layout, which coefficients are modified,
+    capacity, and critically extract() -- is inherited from DCTWatermarker
+    completely unchanged: extraction decodes a bit from the SIGN of the
+    coefficient difference, never its magnitude, so a per-block alpha
+    decodes exactly as reliably as the classic fixed-alpha scheme. Only
+    embed() is overridden here.
+
+    Registered under a NEW method name ("DCT-Adaptive"), so the classic
+    DCT method and every scientific measurement already collected for it
+    are completely unaffected by this class's existence.
+    """
+
+    METHOD = "DCT-Adaptive"
+
+    DESCRIPTION = (
+        "Content-adaptive block-based DCT watermarking: per-block "
+        "embedding strength scaled by local texture/edge energy (HVS "
+        "masking), instead of one fixed strength for the whole image."
+    )
+
+    def embed(
+        self,
+        host: np.ndarray,
+        watermark: np.ndarray,
+    ) -> EmbeddingResult:
+        """
+        Same embedding rule as DCTWatermarker.embed(), except the additive
+        perturbation for each block is
+        `direction * self.alpha * strength_map[bit_row, bit_column]`
+        instead of a flat `direction * self.alpha`.
+        """
+        self.validate(host, watermark)
+
+        host_gray = ensure_grayscale(ensure_uint8_image(host))
+        watermark_binary = normalize_binary_watermark(watermark)
+
+        validate_embedding_capacity(host_gray, watermark_binary, self.block_size)
+
+        host_float = host_gray.astype(np.float32)
+        watermarked_float = host_float.copy()
+
+        wm_height, wm_width = watermark_binary.shape
+
+        strength_map = compute_block_strength_map(
+            host_gray, self.block_size, wm_height, wm_width
+        )
+
+        embedded_bits = 0
+        positive_bits = 0
+        negative_bits = 0
+
+        with Timer() as timer:
+            for bit_row in range(wm_height):
+                for bit_column in range(wm_width):
+                    block = extract_block(
+                        watermarked_float, bit_row, bit_column, self.block_size
+                    )
+
+                    dct_block = cv2.dct(block.astype(np.float32))
+
+                    bit = int(watermark_binary[bit_row, bit_column])
+                    direction = 1.0 if bit == 1 else -1.0
+                    block_alpha = self.alpha * float(
+                        strength_map[bit_row, bit_column]
+                    )
+
+                    for coefficient in self.coefficients:
+                        dct_block[coefficient] += direction * block_alpha
+
+                    reconstructed = cv2.idct(dct_block)
+
+                    place_block(
+                        watermarked_float,
+                        reconstructed,
+                        bit_row,
+                        bit_column,
+                        self.block_size,
+                    )
+
+                    embedded_bits += 1
+
+                    if bit == 1:
+                        positive_bits += 1
+                    else:
+                        negative_bits += 1
+
+        watermarked_uint8 = np.uint8(
+            np.clip(np.rint(watermarked_float), 0, 255)
+        )
+
+        metadata: Dict[str, Any] = build_metadata(
+            method=self.METHOD,
+            alpha=self.alpha,
+            host=host_gray,
+            watermark=watermark_binary,
+        )
+
+        metadata.update({
+            "block_size": self.block_size,
+            "coefficients": [list(item) for item in self.coefficients],
+            "embedded_bits": embedded_bits,
+            "positive_bits": positive_bits,
+            "negative_bits": negative_bits,
+            "watermark_shape": list(watermark_binary.shape),
+            "host_shape": list(host_gray.shape),
+            "required_host_shape": list(
+                required_host_dimensions(watermark_binary.shape, self.block_size)
+            ),
+            "embedding_rate": float(embedded_bits / host_gray.size),
+            "non_blind_extraction": True,
+            "adaptive_strength": True,
+            "strength_multiplier_min": float(strength_map.min()),
+            "strength_multiplier_max": float(strength_map.max()),
+            "strength_multiplier_mean": float(strength_map.mean()),
+        })
+
+        return EmbeddingResult(
+            watermarked_image=watermarked_uint8,
+            runtime=timer.elapsed,
+            metadata=metadata,
+        )
 
 
 # ============================================================
