@@ -177,12 +177,29 @@ def normalize_lower_is_better(
 ) -> pd.Series:
     """
     Min-max normalization where smaller values are better.
-    """
-    higher_score = normalize_higher_is_better(
-        values
-    )
 
-    return 1.0 - higher_score
+    If all methods have the same value, they are treated
+    equally and receive the maximum normalized score.
+    """
+    numeric = values.astype(np.float64)
+
+    minimum = float(numeric.min())
+    maximum = float(numeric.max())
+
+    difference = maximum - minimum
+
+    if abs(difference) < 1e-12:
+        return pd.Series(
+            np.ones(
+                len(numeric),
+                dtype=np.float64,
+            ),
+            index=numeric.index,
+        )
+
+    return (
+        maximum - numeric
+    ) / difference
 
 
 # ============================================================
