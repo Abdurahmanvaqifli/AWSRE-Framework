@@ -34,11 +34,11 @@ from watermarking.dct_svd import (
     DCTSVDWatermarker,
 )
 
-from watermarking.block_svd import (
-    BlockSVDWatermarker,
-    embed_block_svd,
-    extract_block_svd,
-)
+#from watermarking.block_svd import (
+    #BlockSVDWatermarker,
+    #embed_block_svd,
+    #extract_block_svd,
+#)
 
 
 __all__ = [
@@ -66,7 +66,7 @@ __all__ = [
 
     "DCTSVDWatermarker",
 
-    "BlockSVDWatermarker",
-    "embed_block_svd",
-    "extract_block_svd",
+    #"BlockSVDWatermarker",
+    #"embed_block_svd",
+    #"extract_block_svd",
 ]
