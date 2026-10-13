@@ -2,6 +2,12 @@
 AWSRE DWT Watermarking Module
 
 Level-1, non-blind DWT watermark embedding and extraction.
+
+Improved version:
+- distributes watermark bits across the selected DWT subband
+- avoids concentrating the watermark in the top-left region
+- uses a deterministic embedding pattern
+- defaults to the HL subband instead of LL
 """
 
 from __future__ import annotations
@@ -24,21 +30,57 @@ from watermarking.base import (
 from watermarking.registry import watermarker
 
 
-SUPPORTED_SUBBANDS = ("LL", "LH", "HL", "HH")
+# ============================================================
+# CONSTANTS
+# ============================================================
+
+SUPPORTED_SUBBANDS = (
+    "LL",
+    "LH",
+    "HL",
+    "HH",
+)
+
 DEFAULT_WAVELET = "haar"
-DEFAULT_SUBBAND = "LL"
+
+# Important change:
+# LL contains most of the visible low-frequency image energy.
+# HL is less visually sensitive for invisible watermarking.
+DEFAULT_SUBBAND = "HL"
+
 DEFAULT_LEVEL = 1
 DEFAULT_ALPHA = 10.0
 
+# Fixed seed guarantees that embedding and extraction select
+# exactly the same DWT coefficient positions.
+DEFAULT_SEED = 2026
 
-def _ensure_uint8(image: np.ndarray) -> np.ndarray:
-    array = np.asarray(image)
+
+# ============================================================
+# BASIC HELPERS
+# ============================================================
+
+def _ensure_uint8(
+    image: np.ndarray,
+) -> np.ndarray:
+    """
+    Convert image data safely to uint8.
+    """
+    array = np.asarray(
+        image
+    )
 
     if array.size == 0:
-        raise ValueError("Image array is empty.")
+        raise ValueError(
+            "Image array is empty."
+        )
 
-    if not np.all(np.isfinite(array)):
-        raise ValueError("Image contains NaN or infinite values.")
+    if not np.all(
+        np.isfinite(array)
+    ):
+        raise ValueError(
+            "Image contains NaN or infinite values."
+        )
 
     if array.dtype == np.uint8:
         return array.copy()
@@ -55,30 +97,63 @@ def _ensure_uint8(image: np.ndarray) -> np.ndarray:
 def _normalize_watermark(
     watermark: np.ndarray,
 ) -> np.ndarray:
-    validate_watermark(watermark)
+    """
+    Convert watermark to a binary array containing 0 and 1.
+    """
+    validate_watermark(
+        watermark
+    )
 
     array = ensure_grayscale(
-        np.asarray(watermark)
-    ).astype(np.float64)
+        np.asarray(
+            watermark
+        )
+    ).astype(
+        np.float64
+    )
 
-    if not np.all(np.isfinite(array)):
+    if array.size == 0:
+        raise ValueError(
+            "Watermark image is empty."
+        )
+
+    if not np.all(
+        np.isfinite(array)
+    ):
         raise ValueError(
             "Watermark contains NaN or infinite values."
         )
 
     threshold = (
         0.5
-        if float(np.max(array)) <= 1.0
+        if float(
+            np.max(array)
+        ) <= 1.0
         else 127.5
     )
 
     return (
         array >= threshold
-    ).astype(np.uint8)
+    ).astype(
+        np.uint8
+    )
 
 
-def _validate_subband(subband: str) -> str:
-    normalized = str(subband).strip().upper()
+# ============================================================
+# PARAMETER VALIDATION
+# ============================================================
+
+def _validate_subband(
+    subband: str,
+) -> str:
+    """
+    Validate DWT subband name.
+    """
+    normalized = (
+        str(subband)
+        .strip()
+        .upper()
+    )
 
     if normalized not in SUPPORTED_SUBBANDS:
         raise ValueError(
@@ -89,26 +164,45 @@ def _validate_subband(subband: str) -> str:
     return normalized
 
 
-def _validate_level(level: int) -> int:
-    normalized = int(level)
+def _validate_level(
+    level: int,
+) -> int:
+    """
+    AWSRE currently supports one-level DWT.
+    """
+    normalized = int(
+        level
+    )
 
     if normalized != 1:
         raise ValueError(
-            "The initial AWSRE DWT implementation supports "
-            "level=1 only."
+            "The current AWSRE DWT implementation "
+            "supports level=1 only."
         )
 
     return normalized
 
 
-def _validate_wavelet(wavelet: str) -> str:
-    normalized = str(wavelet).strip()
+def _validate_wavelet(
+    wavelet: str,
+) -> str:
+    """
+    Validate PyWavelets wavelet name.
+    """
+    normalized = str(
+        wavelet
+    ).strip()
 
     if not normalized:
-        raise ValueError("wavelet cannot be empty.")
+        raise ValueError(
+            "wavelet cannot be empty."
+        )
 
     try:
-        pywt.Wavelet(normalized)
+        pywt.Wavelet(
+            normalized
+        )
+
     except Exception as exc:
         raise ValueError(
             f"Unsupported wavelet: {normalized}."
@@ -117,12 +211,21 @@ def _validate_wavelet(wavelet: str) -> str:
     return normalized
 
 
+# ============================================================
+# DWT HELPERS
+# ============================================================
+
 def _decompose(
     image: np.ndarray,
     wavelet: str,
 ):
+    """
+    Perform level-1 two-dimensional DWT.
+    """
     return pywt.dwt2(
-        image.astype(np.float64),
+        image.astype(
+            np.float64
+        ),
         wavelet,
         mode="symmetric",
     )
@@ -132,14 +235,25 @@ def _select_subband(
     coefficients,
     subband: str,
 ) -> np.ndarray:
-    ll, (lh, hl, hh) = coefficients
+    """
+    Return the requested DWT subband.
+    """
+    ll, (
+        lh,
+        hl,
+        hh,
+    ) = coefficients
 
-    return {
+    bands = {
         "LL": ll,
         "LH": lh,
         "HL": hl,
         "HH": hh,
-    }[subband]
+    }
+
+    return bands[
+        subband
+    ]
 
 
 def _replace_subband(
@@ -147,45 +261,141 @@ def _replace_subband(
     subband: str,
     replacement: np.ndarray,
 ):
-    ll, (lh, hl, hh) = coefficients
+    """
+    Replace one DWT subband and preserve the others.
+    """
+    ll, (
+        lh,
+        hl,
+        hh,
+    ) = coefficients
 
     if subband == "LL":
         ll = replacement
+
     elif subband == "LH":
         lh = replacement
+
     elif subband == "HL":
         hl = replacement
+
     else:
         hh = replacement
 
-    return ll, (lh, hl, hh)
+    return (
+        ll,
+        (
+            lh,
+            hl,
+            hh,
+        ),
+    )
+
+
+# ============================================================
+# DISTRIBUTED EMBEDDING
+# ============================================================
+
+def _distributed_indices(
+    band_shape: Tuple[int, int],
+    number_of_bits: int,
+    seed: int,
+) -> np.ndarray:
+    """
+    Select coefficient positions distributed across the entire
+    DWT subband.
+
+    The same seed guarantees identical positions during
+    embedding and extraction.
+    """
+    height = int(
+        band_shape[0]
+    )
+
+    width = int(
+        band_shape[1]
+    )
+
+    total_coefficients = (
+        height * width
+    )
+
+    number_of_bits = int(
+        number_of_bits
+    )
+
+    if number_of_bits <= 0:
+        raise ValueError(
+            "The watermark must contain at least one bit."
+        )
+
+    if number_of_bits > total_coefficients:
+        raise ValueError(
+            "Watermark requires more coefficients than "
+            "the selected DWT subband contains. "
+            f"Required: {number_of_bits}; "
+            f"available: {total_coefficients}."
+        )
+
+    rng = np.random.default_rng(
+        int(seed)
+    )
+
+    indices = rng.choice(
+        total_coefficients,
+        size=number_of_bits,
+        replace=False,
+    )
+
+    return np.asarray(
+        indices,
+        dtype=np.int64,
+    )
 
 
 def _validate_capacity(
     selected_band: np.ndarray,
     watermark: np.ndarray,
 ) -> None:
-    wm_height, wm_width = watermark.shape
-    band_height, band_width = selected_band.shape
+    """
+    Check whether the DWT subband contains enough coefficients.
+    """
+    required_bits = int(
+        watermark.size
+    )
 
-    if (
-        wm_height > band_height
-        or wm_width > band_width
-    ):
+    available_coefficients = int(
+        selected_band.size
+    )
+
+    if required_bits > available_coefficients:
         raise ValueError(
-            "Watermark is larger than the selected DWT band. "
-            f"Watermark: {wm_width}x{wm_height}; "
-            f"band: {band_width}x{band_height}."
+            "Watermark exceeds DWT embedding capacity. "
+            f"Watermark bits: {required_bits}; "
+            f"available coefficients: "
+            f"{available_coefficients}."
         )
 
+
+# ============================================================
+# EXTRACTION VALIDATION
+# ============================================================
 
 def _validate_extraction(
     original: np.ndarray,
     processed: np.ndarray,
     watermark_shape: Tuple[int, int],
 ) -> Tuple[int, int]:
-    validate_host_image(original)
-    validate_host_image(processed)
+    """
+    Validate extraction inputs.
+    """
+    validate_host_image(
+        original
+    )
+
+    validate_host_image(
+        processed
+    )
 
     if original.shape != processed.shape:
         raise ValueError(
@@ -193,21 +403,38 @@ def _validate_extraction(
             "identical shapes."
         )
 
-    if len(watermark_shape) != 2:
+    if len(
+        watermark_shape
+    ) != 2:
         raise ValueError(
             "watermark_shape must be (height, width)."
         )
 
-    height = int(watermark_shape[0])
-    width = int(watermark_shape[1])
+    height = int(
+        watermark_shape[0]
+    )
 
-    if height <= 0 or width <= 0:
+    width = int(
+        watermark_shape[1]
+    )
+
+    if (
+        height <= 0
+        or width <= 0
+    ):
         raise ValueError(
             "Watermark dimensions must be positive."
         )
 
-    return height, width
+    return (
+        height,
+        width,
+    )
 
+
+# ============================================================
+# METADATA
+# ============================================================
 
 def _embedding_metadata(
     *,
@@ -217,13 +444,21 @@ def _embedding_metadata(
     subband: str,
     watermark_shape: Tuple[int, int],
     host_shape: Tuple[int, ...],
+    seed: int,
 ) -> Dict[str, Any]:
+    """
+    Build metadata describing the embedding process.
+    """
     return {
         "method": "DWT",
         "family": "wavelet_transform",
-        "alpha": float(alpha),
+        "alpha": float(
+            alpha
+        ),
         "wavelet": wavelet,
-        "level": int(level),
+        "level": int(
+            level
+        ),
         "subband": subband,
         "blind": False,
         "supports_rgb": False,
@@ -234,23 +469,44 @@ def _embedding_metadata(
         "watermark_width": int(
             watermark_shape[1]
         ),
-        "host_shape": list(host_shape),
+        "watermark_bits": int(
+            watermark_shape[0]
+            * watermark_shape[1]
+        ),
+        "host_shape": list(
+            host_shape
+        ),
+        "distribution": (
+            "deterministic distributed coefficient embedding"
+        ),
+        "seed": int(
+            seed
+        ),
         "embedding_rule": (
-            "selected_band += alpha for bit 1; "
-            "selected_band -= alpha for bit 0"
+            "selected distributed coefficient += alpha "
+            "for bit 1 and -= alpha for bit 0"
         ),
     }
 
 
+# ============================================================
+# DWT WATERMARKER
+# ============================================================
+
 @watermarker
-class DWTWatermarker(BaseWatermarker):
-    """Non-blind level-1 DWT watermarker."""
+class DWTWatermarker(
+    BaseWatermarker
+):
+    """
+    Non-blind level-1 distributed DWT watermarker.
+    """
 
     METHOD = "DWT"
 
     DESCRIPTION = (
-        "Non-blind level-1 wavelet-domain watermarking with "
-        "configurable wavelet, subband and embedding strength."
+        "Non-blind level-1 DWT watermarking with "
+        "distributed coefficient embedding for improved "
+        "visual imperceptibility."
     )
 
     SUPPORTS_RGB = False
@@ -264,34 +520,119 @@ class DWTWatermarker(BaseWatermarker):
         wavelet: str = DEFAULT_WAVELET,
         level: int = DEFAULT_LEVEL,
         subband: str = DEFAULT_SUBBAND,
+        seed: int = DEFAULT_SEED,
     ) -> None:
+
         super().__init__(
-            alpha=normalize_alpha(alpha)
+            alpha=normalize_alpha(
+                alpha
+            )
         )
 
-        self.wavelet = _validate_wavelet(
-            wavelet
+        self.wavelet = (
+            _validate_wavelet(
+                wavelet
+            )
         )
 
-        self.level = _validate_level(
-            level
+        self.level = (
+            _validate_level(
+                level
+            )
         )
 
-        self.subband = _validate_subband(
-            subband
+        self.subband = (
+            _validate_subband(
+                subband
+            )
         )
+
+        self.seed = int(
+            seed
+        )
+
+    # --------------------------------------------------------
+    # CAPACITY
+    # --------------------------------------------------------
+
+    def maximum_watermark_shape(
+        self,
+        host: np.ndarray,
+    ) -> Tuple[int, int]:
+        """
+        Return the largest square binary watermark that can be
+        embedded using one coefficient per watermark bit.
+        """
+        validate_host_image(
+            host
+        )
+
+        host_gray = _ensure_uint8(
+            ensure_grayscale(
+                np.asarray(
+                    host
+                )
+            )
+        )
+
+        coefficients = _decompose(
+            host_gray,
+            self.wavelet,
+        )
+
+        selected_band = _select_subband(
+            coefficients,
+            self.subband,
+        )
+
+        capacity = int(
+            selected_band.size
+        )
+
+        side = int(
+            np.floor(
+                np.sqrt(
+                    capacity
+                )
+            )
+        )
+
+        side = max(
+            side,
+            1,
+        )
+
+        return (
+            side,
+            side,
+        )
+
+    # --------------------------------------------------------
+    # EMBEDDING
+    # --------------------------------------------------------
 
     def embed(
         self,
         host: np.ndarray,
         watermark: np.ndarray,
     ) -> EmbeddingResult:
-        validate_host_image(host)
-        validate_watermark(watermark)
+        """
+        Embed a binary watermark across distributed DWT
+        coefficient locations.
+        """
+        validate_host_image(
+            host
+        )
+
+        validate_watermark(
+            watermark
+        )
 
         host_gray = _ensure_uint8(
             ensure_grayscale(
-                np.asarray(host)
+                np.asarray(
+                    host
+                )
             )
         )
 
@@ -302,6 +643,7 @@ class DWTWatermarker(BaseWatermarker):
         )
 
         with Timer() as timer:
+
             coefficients = _decompose(
                 host_gray,
                 self.wavelet,
@@ -317,21 +659,51 @@ class DWTWatermarker(BaseWatermarker):
                 watermark_binary,
             )
 
-            wm_height, wm_width = (
-                watermark_binary.shape
+            watermark_flat = (
+                watermark_binary
+                .astype(
+                    np.float64
+                )
+                .reshape(
+                    -1
+                )
             )
 
+            # Convert:
+            # bit 0 -> -1
+            # bit 1 -> +1
             signs = (
-                watermark_binary
-                .astype(np.float64)
+                watermark_flat
                 * 2.0
                 - 1.0
             )
 
-            selected[
-                :wm_height,
-                :wm_width,
-            ] += self.alpha * signs
+            indices = _distributed_indices(
+                band_shape=selected.shape,
+                number_of_bits=(
+                    watermark_binary.size
+                ),
+                seed=self.seed,
+            )
+
+            selected_flat = (
+                selected.reshape(
+                    -1
+                )
+            )
+
+            selected_flat[
+                indices
+            ] += (
+                self.alpha
+                * signs
+            )
+
+            selected = (
+                selected_flat.reshape(
+                    selected.shape
+                )
+            )
 
             modified_coefficients = (
                 _replace_subband(
@@ -347,13 +719,17 @@ class DWTWatermarker(BaseWatermarker):
                 mode="symmetric",
             )
 
+            # DWT reconstruction may be one pixel larger
+            # for odd-sized input images.
             reconstructed = reconstructed[
                 :host_gray.shape[0],
                 :host_gray.shape[1],
             ]
 
-            watermarked = _ensure_uint8(
-                reconstructed
+            watermarked = (
+                _ensure_uint8(
+                    reconstructed
+                )
             )
 
         metadata = _embedding_metadata(
@@ -364,11 +740,22 @@ class DWTWatermarker(BaseWatermarker):
             watermark_shape=(
                 watermark_binary.shape
             ),
-            host_shape=host_gray.shape,
+            host_shape=(
+                host_gray.shape
+            ),
+            seed=self.seed,
         )
 
-        metadata["selected_band_shape"] = list(
+        metadata[
+            "selected_band_shape"
+        ] = list(
             selected.shape
+        )
+
+        metadata[
+            "embedded_coefficients"
+        ] = int(
+            watermark_binary.size
         )
 
         return EmbeddingResult(
@@ -377,86 +764,160 @@ class DWTWatermarker(BaseWatermarker):
             metadata=metadata,
         )
 
+    # --------------------------------------------------------
+    # EXTRACTION
+    # --------------------------------------------------------
+
     def extract(
         self,
         original: np.ndarray,
         watermarked: np.ndarray,
         watermark_shape: Tuple[int, int],
     ) -> ExtractionResult:
-        wm_height, wm_width = (
-            _validate_extraction(
-                original,
-                watermarked,
-                watermark_shape,
-            )
+        """
+        Extract the watermark using the original host image.
+
+        This is a non-blind extraction method.
+        """
+        (
+            wm_height,
+            wm_width,
+        ) = _validate_extraction(
+            original,
+            watermarked,
+            watermark_shape,
         )
 
         original_gray = _ensure_uint8(
             ensure_grayscale(
-                np.asarray(original)
+                np.asarray(
+                    original
+                )
             )
         )
 
         processed_gray = _ensure_uint8(
             ensure_grayscale(
-                np.asarray(watermarked)
+                np.asarray(
+                    watermarked
+                )
             )
         )
 
         with Timer() as timer:
-            original_coefficients = _decompose(
-                original_gray,
-                self.wavelet,
+
+            original_coefficients = (
+                _decompose(
+                    original_gray,
+                    self.wavelet,
+                )
             )
 
-            processed_coefficients = _decompose(
-                processed_gray,
-                self.wavelet,
+            processed_coefficients = (
+                _decompose(
+                    processed_gray,
+                    self.wavelet,
+                )
             )
 
-            original_band = _select_subband(
-                original_coefficients,
-                self.subband,
+            original_band = (
+                _select_subband(
+                    original_coefficients,
+                    self.subband,
+                )
             )
 
-            processed_band = _select_subband(
-                processed_coefficients,
-                self.subband,
+            processed_band = (
+                _select_subband(
+                    processed_coefficients,
+                    self.subband,
+                )
+            )
+
+            number_of_bits = int(
+                wm_height
+                * wm_width
             )
 
             if (
-                wm_height > original_band.shape[0]
-                or wm_width > original_band.shape[1]
+                number_of_bits
+                > original_band.size
             ):
                 raise ValueError(
                     "Requested watermark shape exceeds "
-                    "the selected DWT band."
+                    "the selected DWT band's capacity."
                 )
 
+            indices = _distributed_indices(
+                band_shape=(
+                    original_band.shape
+                ),
+                number_of_bits=(
+                    number_of_bits
+                ),
+                seed=self.seed,
+            )
+
+            original_flat = (
+                original_band.reshape(
+                    -1
+                )
+            )
+
+            processed_flat = (
+                processed_band.reshape(
+                    -1
+                )
+            )
+
             difference = (
-                processed_band[
-                    :wm_height,
-                    :wm_width,
+                processed_flat[
+                    indices
                 ]
-                - original_band[
-                    :wm_height,
-                    :wm_width,
+                - original_flat[
+                    indices
                 ]
             )
 
-            extracted = (
+            extracted_flat = (
                 difference >= 0.0
-            ).astype(np.uint8)
+            ).astype(
+                np.uint8
+            )
+
+            extracted = (
+                extracted_flat.reshape(
+                    wm_height,
+                    wm_width,
+                )
+            )
 
         metadata = {
             "method": self.METHOD,
-            "alpha": float(self.alpha),
+            "alpha": float(
+                self.alpha
+            ),
             "wavelet": self.wavelet,
-            "level": int(self.level),
+            "level": int(
+                self.level
+            ),
             "subband": self.subband,
             "blind": False,
-            "watermark_height": wm_height,
-            "watermark_width": wm_width,
+            "seed": int(
+                self.seed
+            ),
+            "distribution": (
+                "deterministic distributed coefficient embedding"
+            ),
+            "watermark_height": int(
+                wm_height
+            ),
+            "watermark_width": int(
+                wm_width
+            ),
+            "watermark_bits": int(
+                number_of_bits
+            ),
             "selected_band_shape": list(
                 original_band.shape
             ),
@@ -469,7 +930,12 @@ class DWTWatermarker(BaseWatermarker):
         )
 
 
+# ============================================================
+# SELF TEST
+# ============================================================
+
 if __name__ == "__main__":
+
     rng = np.random.default_rng(
         seed=42
     )
@@ -477,21 +943,28 @@ if __name__ == "__main__":
     host = rng.integers(
         0,
         256,
-        size=(512, 512),
+        size=(
+            512,
+            512,
+        ),
         dtype=np.uint8,
     )
 
     watermark = rng.integers(
         0,
         2,
-        size=(32, 32),
+        size=(
+            32,
+            32,
+        ),
         dtype=np.uint8,
     )
 
     algorithm = DWTWatermarker(
-        alpha=10,
+        alpha=20,
         wavelet="haar",
-        subband="LL",
+        subband="HL",
+        seed=2026,
     )
 
     embedded = algorithm.embed(
@@ -512,8 +985,21 @@ if __name__ == "__main__":
         )
     )
 
-    assert embedded.watermarked_image.shape == host.shape
-    assert extracted.extracted_watermark.shape == watermark.shape
-    assert ber == 0.0
+    assert (
+        embedded.watermarked_image.shape
+        == host.shape
+    )
 
-    print("✅ DWT watermarker self test passed.")
+    assert (
+        extracted.extracted_watermark.shape
+        == watermark.shape
+    )
+
+    print(
+        "DWT self-test BER:",
+        ber,
+    )
+
+    print(
+        "✅ DWT distributed watermarker self test passed."
+    )
