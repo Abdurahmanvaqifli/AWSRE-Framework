@@ -148,3 +148,53 @@ def show_research_results() -> None:
             "təkrarlanmadı (məqalə əlçatan deyil).",
         )
     )
+
+    st.divider()
+    show_limitations_and_future_work()
+
+
+def show_limitations_and_future_work() -> None:
+    st.subheader(t("Limitations and future work", "Məhdudiyyətlər və gələcək iş"))
+
+    st.markdown(t("#### Limitations", "#### Məhdudiyyətlər"))
+    st.markdown(
+        t(
+            "- **One strategy dominates.** Without the time criterion (MSE and BER only) AWSRE picks "
+            "DCT α = 15 in 318 of 320 test contexts. The oracle, using real measurements instead of "
+            "predictions, also picks DCT α = 15 in 84% of them, so this reflects the data, not a "
+            "model bias. Adaptivity pays off mainly under blur and when a minimum PSNR is required.\n"
+            "- **Verification needs the original photo** (non-blind DCT), and rotation or cropping "
+            "destroys the mark.",
+            "- **Bir strategiya üstünlük təşkil edir.** Vaxt meyarı olmadan (yalnız MSE və BER) AWSRE "
+            "320 test kontekstindən 318-də DCT α = 15 seçir. Proqnoz əvəzinə real ölçmələrdən istifadə "
+            "edən oracle da onların 84%-də DCT α = 15 seçir, yəni bu, modelin meyli deyil, verilənlərin "
+            "özünü əks etdirir. Adaptivlik əsasən bulanıqlıqda və minimum PSNR tələb olunanda fayda verir.\n"
+            "- **Yoxlama üçün orijinal şəkil lazımdır** (kor olmayan DCT), fırlatma və kəsmə isə "
+            "nişanı məhv edir.",
+        )
+    )
+
+    st.markdown(t("#### Future work (not implemented)", "#### Gələcək iş (həyata keçirilməyib)"))
+    st.markdown(
+        t(
+            "- **Context-aware choice:** let the use case set the priority, e.g. medical images → "
+            "high PSNR, military images → low BER.\n"
+            "- **Attack scenarios:** choose the strategy for the attacks a photo is expected to face.\n"
+            "- **More embedding methods,** so the recommender has more real alternatives to choose from.\n"
+            "- **A unique watermark per user (traceability):** instead of the same logo for everyone, "
+            "embed the recipient's ID (user metadata) in each copy, so a leaked copy can be traced back "
+            "to the person it was given to.\n"
+            "- **Robustness to geometric changes:** a blind, self-synchronising watermark that survives "
+            "cropping, downscaling, re-encoding and screen or camera capture.",
+            "- **Kontekstə görə seçim:** istifadə sahəsi prioriteti təyin etsin, məsələn tibbi "
+            "şəkillər → yüksək PSNR, hərbi şəkillər → aşağı BER.\n"
+            "- **Hücum ssenariləri:** strategiyanı şəklin qarşılaşacağı hücumlara görə seçmək.\n"
+            "- **Daha çox yerləşdirmə metodu,** ki tövsiyə sistemi seçmək üçün daha çox real alternativə "
+            "malik olsun.\n"
+            "- **Hər istifadəçiyə unikal su nişanı (izlənə bilmə):** hamı üçün eyni loqo əvəzinə hər "
+            "nüsxəyə alıcının ID-si (istifadəçi metadatası) yerləşdirilsin ki, sızan nüsxənin kimə "
+            "verildiyi müəyyən edilə bilsin.\n"
+            "- **Həndəsi dəyişikliklərə davamlılıq:** kəsməyə, kiçiltməyə, yenidən kodlaşdırmaya və "
+            "ekran və ya kamera ilə çəkilişə dözən, orijinalsız (kor) və özü sinxronlaşan su nişanı.",
+        )
+    )
