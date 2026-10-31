@@ -40,6 +40,8 @@ from core.protect import (
     verify,
 )
 from core.recommender import TRAINED_ALPHAS, TRAINED_METHODS
+from core.robust_watermark import MAX_ID, protect_robust, real_world_test, verify_blind
+from core.robust_watermark import MIN_SIDE as ROBUST_MIN_SIDE
 from core.recommender import load_models as _load_models_uncached
 from i18n import t
 from research_results import show_research_results
@@ -504,6 +506,149 @@ def show_photo_details(index: int, entry) -> None:
     show_robustness_chart(comparison)
     show_extraction(awsre_row, entry["mark"])
 
+    st.divider()
+    st.subheader(t("Real-world attacks: AWSRE vs robust method", "Real həyat hücumları: AWSRE vs dayanıqlı metod"))
+    show_robust_comparison(index, entry)
+
+
+
+# ============================================================
+# ROBUST BLIND MODE (not one of the ML recommender's strategies)
+# ============================================================
+
+def owner_id_input(key: str) -> int:
+    return int(st.number_input(
+        t("ID hidden in the photo (owner or recipient number)", "Şəklə gizlədilən ID (sahib və ya alıcı nömrəsi)"),
+        min_value=0, max_value=MAX_ID, value=1, step=1, key=key,
+        help=t(
+            "A 32-bit number. Verification reads it back from a copy without the original.",
+            "32 bitlik nömrə. Yoxlama onu orijinal olmadan nüsxədən geri oxuyur.",
+        ),
+    ))
+
+
+def show_real_world_table(rows, with_awsre: bool) -> None:
+    def yes_no(found):
+        return "✅ " + t("found", "tapıldı") if found else "❌ " + t("lost", "itdi")
+
+    table = []
+    for row in rows:
+        line = {t("Attack", "Hücum"): t(row.label_en, row.label_az)}
+        if with_awsre:
+            line[t("AWSRE choice (with original)", "AWSRE seçimi (orijinalla)")] = (
+                f"{yes_no(row.awsre_found)} · {row.awsre_ber:.0%} " + t("wrong", "səhv")
+            )
+        line[t("Robust (no original)", "Dayanıqlı (orijinalsız)")] = (
+            yes_no(row.robust_found) + (f" · ID {row.robust_id}" if row.robust_found else "")
+        )
+        table.append(line)
+    st.dataframe(table, hide_index=True, use_container_width=True)
+    robust_count = sum(r.robust_found for r in rows)
+    if with_awsre:
+        awsre_count = sum(bool(r.awsre_found) for r in rows)
+        st.caption(t(
+            "Measured now on this photo, {n} attacks. AWSRE's choice survived {a}, the robust method {r}. "
+            "AWSRE's photo is checked the site's way (original given, 1,024 bits, found at ≤ 30% wrong); "
+            "the robust photo with the key only, and counts as found only if the exact ID comes back.",
+            "Bu şəkil üzərində indi ölçülüb, {n} hücum. AWSRE seçimi {a}-ə, dayanıqlı metod {r}-ə dözdü. "
+            "AWSRE şəkli saytın qaydası ilə yoxlanılır (orijinal verilir, 1 024 bit, ≤ 30% səhvdə tapılmış sayılır); "
+            "dayanıqlı şəkil yalnız açarla yoxlanılır və ID tam düzgün oxunanda tapılmış sayılır.",
+        ).format(n=len(rows), a=awsre_count, r=robust_count))
+    else:
+        st.caption(t(
+            "Measured now on this photo: each attack applied, then checked with the key only "
+            "(no original). Found = the exact ID came back. Survived {r} of {n}.",
+            "Bu şəkil üzərində indi ölçülüb: hər hücum tətbiq olunub, sonra yalnız açarla "
+            "(orijinalsız) yoxlanılıb. Tapıldı = ID tam düzgün oxundu. {n} hücumdan {r}-ə dözdü.",
+        ).format(n=len(rows), r=robust_count))
+
+
+def show_robust_comparison(index: int, entry) -> None:
+    """AWSRE's choice next to the robust blind method, same photo, same attacks."""
+    st.markdown(t(
+        "The 3 methods AWSRE chooses from need the original to verify and do not survive "
+        "cropping. The separate **robust method** (not one of the 15 strategies, no "
+        "predictions) is verified without the original. Compare both on real-world attacks:",
+        "AWSRE-nin seçdiyi 3 metod yoxlama üçün orijinal tələb edir və kəsməyə dözmür. Ayrıca "
+        "**dayanıqlı metod** (15 strategiyadan biri deyil, proqnozu yoxdur) orijinalsız yoxlanılır. "
+        "Hər ikisini real həyat hücumlarında müqayisə edin:",
+    ))
+    if entry.get("real_world") is None:
+        if not st.button(
+            t("Compare with the robust method", "Dayanıqlı metodla müqayisə et"),
+            use_container_width=True, key=f"home_robust_compare_{index}",
+        ):
+            return
+        with st.spinner(t("Embedding the robust watermark and running the attacks...",
+                          "Dayanıqlı nişan yerləşdirilir və hücumlar tətbiq olunur...")):
+            robust = protect_robust(entry["original"], 1)
+            rows = real_world_test(robust.protected, 1, original=entry["original"],
+                                   awsre_protected=entry["result"].protected, mark=entry["mark"])
+        update_entry(index, real_world={"robust": robust, "rows": rows})
+        entry = st.session_state["home_protect_batch"]["entries"][index]
+
+    robust, rows = entry["real_world"]["robust"], entry["real_world"]["rows"]
+    awsre_row = next(row for row in entry["comparison"] if row.is_awsre)
+    st.dataframe(
+        [
+            {t("Method", "Metod"): f"AWSRE: {awsre_row.method}, α = {awsre_row.alpha:g}",
+             "PSNR": f"{awsre_row.psnr:.1f} dB", "SSIM": f"{awsre_row.ssim:.4f}",
+             t("Needs the original to verify", "Yoxlama üçün orijinal lazımdır"): t("Yes", "Bəli")},
+            {t("Method", "Metod"): t("Robust (tiled, 32-bit ID)", "Dayanıqlı (kafel, 32-bit ID)"),
+             "PSNR": f"{robust.psnr:.1f} dB", "SSIM": f"{robust.ssim:.4f}",
+             t("Needs the original to verify", "Yoxlama üçün orijinal lazımdır"): t("No", "Xeyr")},
+        ],
+        hide_index=True, use_container_width=True,
+    )
+    show_real_world_table(rows, with_awsre=True)
+    st.caption(t(
+        "Trade-off: the robust mark is stronger, so its PSNR is usually lower. It does not yet "
+        "survive photographing a screen with a camera.",
+        "Güzəşt: dayanıqlı nişan daha güclüdür, ona görə PSNR adətən aşağıdır. Ekranın kamera "
+        "ilə çəkilməsinə hələ dözmür.",
+    ))
+
+
+def show_robust_details(index: int, entry) -> None:
+    result = entry["result"]
+    st.success(t(
+        "Protected with the robust method. ID {i} is hidden in the photo.",
+        "Dayanıqlı metodla qorundu. Şəklə {i} ID-si gizlədildi.",
+    ).format(i=result.owner_id))
+    before, after = st.columns(2)
+    with before:
+        st.image(entry["original"], caption=t("Original", "Orijinal"), use_container_width=True)
+    with after:
+        st.image(result.protected, caption=t("Protected", "Qorunmuş"), use_container_width=True)
+    stem = entry["name"].rsplit(".", 1)[0]
+    st.download_button(
+        t("Download protected photo (PNG)", "Qorunmuş şəkli endir (PNG)"),
+        data=png_bytes(result.protected), file_name=f"{stem}_awsre_robust.png", mime="image/png",
+        type="primary", use_container_width=True, key=f"home_robust_download_{index}",
+    )
+    st.caption(t("Verification does not need the original.", "Yoxlama üçün orijinal lazım deyil."))
+    psnr_column, ssim_column = st.columns(2)
+    with psnr_column:
+        st.metric("PSNR", f"{result.psnr:.1f} dB")
+    with ssim_column:
+        st.metric("SSIM", f"{result.ssim:.3f}")
+
+    st.divider()
+    st.subheader(t("Robustness to real-world attacks", "Real həyat hücumlarına davamlılıq"))
+    if entry.get("rows") is None:
+        if not st.button(t("Run the attacks", "Hücumları tətbiq et"), use_container_width=True,
+                         key=f"home_robust_attacks_{index}"):
+            return
+        with st.spinner(t("Running the attacks...", "Hücumlar tətbiq olunur...")):
+            rows = real_world_test(result.protected, result.owner_id)
+        batch = dict(st.session_state["home_robust_batch"])
+        entries = list(batch["entries"])
+        entries[index] = {**entries[index], "rows": rows}
+        batch["entries"] = entries
+        st.session_state["home_robust_batch"] = batch
+        entry = entries[index]
+    show_real_world_table(entry["rows"], with_awsre=False)
+
 
 # ============================================================
 # HEADER
@@ -540,102 +685,159 @@ with results_tab:
 # ============================================================
 
 with protect_tab:
-    photo_files = st.file_uploader(
-        t("Photos to protect (one or more)", "Qorunacaq şəkillər (bir və ya bir neçə)"),
-        type=PHOTO_TYPES,
-        accept_multiple_files=True,
-        key="home_protect_photos",
+    protect_mode = st.radio(
+        t("Protection type", "Qoruma növü"),
+        ["awsre", "robust"],
+        format_func=lambda m: {
+            "awsre": t("AWSRE: ML picks the strategy (verify with the original)",
+                       "AWSRE: strategiyanı ML seçir (orijinalla yoxlama)"),
+            "robust": t("Robust: survives crop, JPEG, downscale (verify without the original)",
+                        "Dayanıqlı: kəsmə, JPEG, kiçiltməyə dözür (orijinalsız yoxlama)"),
+        }[m],
+        key="home_protect_mode",
     )
-    protect_mark, _ = custom_mark_input("home_protect_logo")
+    if protect_mode == "awsre":
+        photo_files = st.file_uploader(
+            t("Photos to protect (one or more)", "Qorunacaq şəkillər (bir və ya bir neçə)"),
+            type=PHOTO_TYPES,
+            accept_multiple_files=True,
+            key="home_protect_photos",
+        )
+        protect_mark, _ = custom_mark_input("home_protect_logo")
 
-    if st.button(
-        t("Protect", "Qoru"),
-        type="primary",
-        use_container_width=True,
-        disabled=not photo_files,
-        key="home_protect_button",
-    ):
-        entries, skipped = [], []
-        progress = st.progress(0.0, text=t("Choosing a strategy for each photo...", "Hər şəkil üçün strategiya seçilir..."))
-        for position, photo_file in enumerate(photo_files):
-            photo = read_rgb(photo_file)
-            try:
-                result = protect(photo, protect_mark, clean_model, strategy_model)
-            except ValueError:
-                skipped.append(photo_file.name)
+        if st.button(
+            t("Protect", "Qoru"),
+            type="primary",
+            use_container_width=True,
+            disabled=not photo_files,
+            key="home_protect_button",
+        ):
+            entries, skipped = [], []
+            progress = st.progress(0.0, text=t("Choosing a strategy for each photo...", "Hər şəkil üçün strategiya seçilir..."))
+            for position, photo_file in enumerate(photo_files):
+                photo = read_rgb(photo_file)
+                try:
+                    result = protect(photo, protect_mark, clean_model, strategy_model)
+                except ValueError:
+                    skipped.append(photo_file.name)
+                else:
+                    entries.append({
+                        "name": photo_file.name,
+                        "original": photo,
+                        "mark": protect_mark,
+                        "result": result,
+                        "comparison": None,
+                        "real_world": None,
+                    })
+                progress.progress((position + 1) / len(photo_files))
+            progress.empty()
+            st.session_state["home_protect_batch"] = {
+                "names": tuple(f.name for f in photo_files),
+                "entries": entries,
+                "skipped": skipped,
+            }
+
+        batch = st.session_state.get("home_protect_batch")
+        current_names = tuple(f.name for f in photo_files) if photo_files else ()
+        if batch is not None and batch["names"] == current_names:
+            if batch["skipped"]:
+                st.warning(
+                    t(
+                        "Skipped (smaller than {n} px): {names}",
+                        "Ötürüldü ({n} px-dən kiçik): {names}",
+                    ).format(n=MIN_SIDE, names=", ".join(batch["skipped"]))
+                )
+
+            entries = batch["entries"]
+            if len(entries) > 1:
+                st.markdown(t("#### Each photo got its own strategy", "#### Hər şəkil öz strategiyasını aldı"))
+                st.dataframe(
+                    [
+                        {
+                            t("Photo", "Şəkil"): entry["name"],
+                            t("Size", "Ölçü"): f"{entry['original'].shape[1]}×{entry['original'].shape[0]}",
+                            t("AWSRE choice", "AWSRE seçimi"): f"{entry['result'].method}, α = {entry['result'].alpha:g}",
+                            t("PSNR predicted", "PSNR proqnoz"): f"{entry['result'].recommendation.winner['pred_clean_psnr']:.1f} dB",
+                            t("Wrong bits predicted", "Səhv bitlər proqnoz"): f"{entry['result'].recommendation.winner['pred_mean_attack_ber']:.1%}",
+                        }
+                        for entry in entries
+                    ],
+                    hide_index=True,
+                    use_container_width=True,
+                )
+                distinct = len({(e["result"].method, e["result"].alpha) for e in entries})
+                st.caption(
+                    t(
+                        "{k} different strategies for {n} photos. Each photo was analysed "
+                        "separately from its own features.",
+                        "{n} şəkil üçün {k} fərqli strategiya. Hər şəkil öz xüsusiyyətlərinə "
+                        "görə ayrıca analiz edildi.",
+                    ).format(k=distinct, n=len(entries))
+                )
+                st.download_button(
+                    t("Download all protected photos (ZIP)", "Bütün qorunmuş şəkilləri endir (ZIP)"),
+                    data=zip_bytes(entries),
+                    file_name="awsre_protected.zip",
+                    mime="application/zip",
+                    use_container_width=True,
+                    key="home_protect_zip",
+                )
+                selected = st.selectbox(
+                    t("Show details for", "Ətraflı bax"),
+                    range(len(entries)),
+                    format_func=lambda i: entries[i]["name"],
+                    key="home_protect_selected",
+                )
+                st.divider()
             else:
-                entries.append({
-                    "name": photo_file.name,
-                    "original": photo,
-                    "mark": protect_mark,
-                    "result": result,
-                    "comparison": None,
-                })
-            progress.progress((position + 1) / len(photo_files))
-        progress.empty()
-        st.session_state["home_protect_batch"] = {
-            "names": tuple(f.name for f in photo_files),
-            "entries": entries,
-            "skipped": skipped,
-        }
+                selected = 0
 
-    batch = st.session_state.get("home_protect_batch")
-    current_names = tuple(f.name for f in photo_files) if photo_files else ()
-    if batch is not None and batch["names"] == current_names:
-        if batch["skipped"]:
-            st.warning(
-                t(
-                    "Skipped (smaller than {n} px): {names}",
-                    "Ötürüldü ({n} px-dən kiçik): {names}",
-                ).format(n=MIN_SIDE, names=", ".join(batch["skipped"]))
-            )
+            if entries:
+                show_photo_details(selected, entries[selected])
+    else:
+        robust_files = st.file_uploader(
+            t("Photos to protect (one or more)", "Qorunacaq şəkillər (bir və ya bir neçə)"),
+            type=PHOTO_TYPES, accept_multiple_files=True, key="home_robust_photos",
+        )
+        robust_id = owner_id_input("home_robust_id")
+        if st.button(t("Protect", "Qoru"), type="primary", use_container_width=True,
+                     disabled=not robust_files, key="home_robust_button"):
+            entries, skipped = [], []
+            progress = st.progress(0.0)
+            for position, photo_file in enumerate(robust_files):
+                photo = read_rgb(photo_file)
+                try:
+                    result = protect_robust(photo, robust_id)
+                except ValueError:
+                    skipped.append(photo_file.name)
+                else:
+                    entries.append({"name": photo_file.name, "original": photo, "result": result, "rows": None})
+                progress.progress((position + 1) / len(robust_files))
+            progress.empty()
+            st.session_state["home_robust_batch"] = {
+                "names": tuple(f.name for f in robust_files), "entries": entries, "skipped": skipped,
+            }
 
-        entries = batch["entries"]
-        if len(entries) > 1:
-            st.markdown(t("#### Each photo got its own strategy", "#### Hər şəkil öz strategiyasını aldı"))
-            st.dataframe(
-                [
-                    {
-                        t("Photo", "Şəkil"): entry["name"],
-                        t("Size", "Ölçü"): f"{entry['original'].shape[1]}×{entry['original'].shape[0]}",
-                        t("AWSRE choice", "AWSRE seçimi"): f"{entry['result'].method}, α = {entry['result'].alpha:g}",
-                        t("PSNR predicted", "PSNR proqnoz"): f"{entry['result'].recommendation.winner['pred_clean_psnr']:.1f} dB",
-                        t("Wrong bits predicted", "Səhv bitlər proqnoz"): f"{entry['result'].recommendation.winner['pred_mean_attack_ber']:.1%}",
-                    }
-                    for entry in entries
-                ],
-                hide_index=True,
-                use_container_width=True,
-            )
-            distinct = len({(e["result"].method, e["result"].alpha) for e in entries})
-            st.caption(
-                t(
-                    "{k} different strategies for {n} photos. Each photo was analysed "
-                    "separately from its own features.",
-                    "{n} şəkil üçün {k} fərqli strategiya. Hər şəkil öz xüsusiyyətlərinə "
-                    "görə ayrıca analiz edildi.",
-                ).format(k=distinct, n=len(entries))
-            )
-            st.download_button(
-                t("Download all protected photos (ZIP)", "Bütün qorunmuş şəkilləri endir (ZIP)"),
-                data=zip_bytes(entries),
-                file_name="awsre_protected.zip",
-                mime="application/zip",
-                use_container_width=True,
-                key="home_protect_zip",
-            )
-            selected = st.selectbox(
-                t("Show details for", "Ətraflı bax"),
-                range(len(entries)),
-                format_func=lambda i: entries[i]["name"],
-                key="home_protect_selected",
-            )
-            st.divider()
-        else:
-            selected = 0
-
-        if entries:
-            show_photo_details(selected, entries[selected])
+        robust_batch = st.session_state.get("home_robust_batch")
+        robust_names = tuple(f.name for f in robust_files) if robust_files else ()
+        if robust_batch is not None and robust_batch["names"] == robust_names:
+            if robust_batch["skipped"]:
+                st.warning(t("Skipped (smaller than {n} px): {names}", "Ötürüldü ({n} px-dən kiçik): {names}").format(
+                    n=ROBUST_MIN_SIDE, names=", ".join(robust_batch["skipped"])))
+            robust_entries = robust_batch["entries"]
+            if len(robust_entries) > 1:
+                st.download_button(
+                    t("Download all protected photos (ZIP)", "Bütün qorunmuş şəkilləri endir (ZIP)"),
+                    data=zip_bytes(robust_entries), file_name="awsre_robust.zip", mime="application/zip",
+                    use_container_width=True, key="home_robust_zip",
+                )
+                chosen = st.selectbox(t("Show details for", "Ətraflı bax"), range(len(robust_entries)),
+                                      format_func=lambda i: robust_entries[i]["name"], key="home_robust_selected")
+                st.divider()
+            else:
+                chosen = 0
+            if robust_entries:
+                show_robust_details(chosen, robust_entries[chosen])
 
 
 # ============================================================
@@ -652,7 +854,7 @@ with verify_tab:
         )
     with original_column:
         original_file = st.file_uploader(
-            t("Your original photo", "Orijinal şəkliniz"),
+            t("Your original photo (optional)", "Orijinal şəkliniz (istəyə bağlı)"),
             type=PHOTO_TYPES,
             key="home_verify_original",
         )
@@ -662,13 +864,20 @@ with verify_tab:
         t("Verify", "Yoxla"),
         type="primary",
         use_container_width=True,
-        disabled=suspect_file is None or original_file is None,
+        disabled=suspect_file is None,
         key="home_verify_button",
     ):
         with st.spinner(t("Looking for the watermark...", "Su nişanı axtarılır...")):
-            outcome = verify(read_rgb(suspect_file), read_rgb(original_file), verify_mark)
+            suspect_rgb = read_rgb(suspect_file)
+            # 1) robust watermark: key only, no original needed
+            blind = verify_blind(suspect_rgb)
+            # 2) AWSRE's methods: only possible when the original is given
+            outcome = None
+            if not blind.found and original_file is not None:
+                outcome = verify(suspect_rgb, read_rgb(original_file), verify_mark)
         st.session_state["home_verify_result"] = {
-            "names": (suspect_file.name, original_file.name),
+            "names": (suspect_file.name, original_file.name if original_file else None),
+            "blind": blind,
             "outcome": outcome,
             "mark": verify_mark,
         }
@@ -678,7 +887,41 @@ with verify_tab:
         suspect_file.name if suspect_file else None,
         original_file.name if original_file else None,
     )
-    if saved is not None and saved["names"] == current_names:
+    if saved is not None and saved["names"] == current_names and saved["blind"].found:
+        blind = saved["blind"]
+        st.success(t("Robust watermark found, no original needed", "Dayanıqlı su nişanı tapıldı, orijinal lazım olmadı"))
+        id_column, score_column = st.columns(2)
+        with id_column:
+            st.metric(t("ID in the photo", "Şəkildəki ID"), f"{blind.user_id}")
+        with score_column:
+            st.metric(t("Sync score", "Sinxronizasiya göstəricisi"), f"{blind.sync_score:.1f}", help=t(
+                "Strength of the hidden pattern's correlation peak in standard deviations. "
+                "Accepted at 7 or more, and only if the ID's 16-bit checksum also matches.",
+                "Gizli nümunənin korrelyasiya zirvəsinin gücü (standart sapma ilə). 7 və yuxarı "
+                "olduqda və ID-nin 16 bitlik yoxlama cəmi də uyğun gəldikdə qəbul olunur.",
+            ))
+        with st.expander(t("How this was decided", "Bu necə müəyyən edildi")):
+            st.markdown(t(
+                "The photo's autocorrelation reveals the repeating hidden tile, which gives back the "
+                "scale and rotation the copy went through. The photo is then folded into one tile, "
+                "aligned with the key's sync pattern, and 48 bits are read (32-bit ID + 16-bit "
+                "checksum). On unmarked photos and with wrong keys this test gave 0 false finds in "
+                "80 trials (research/robust_tiled).",
+                "Şəklin avtokorrelyasiyası təkrarlanan gizli kafeli göstərir, bu da nüsxənin keçdiyi "
+                "miqyas və fırlanmanı geri verir. Sonra şəkil bir kafelə qatlanır, açarın "
+                "sinxronizasiya nümunəsi ilə hizalanır və 48 bit oxunur (32-bit ID + 16-bit yoxlama "
+                "cəmi). Nişansız şəkillərdə və səhv açarla 80 sınaqda 0 yalançı tapıntı oldu "
+                "(research/robust_tiled).",
+            ))
+    elif saved is not None and saved["names"] == current_names and saved["outcome"] is None:
+        st.error(t("No watermark found", "Su nişanı tapılmadı"))
+        st.caption(t(
+            "No robust watermark is in this photo. If it was protected in AWSRE mode, also upload "
+            "the original: those methods can only be checked against it.",
+            "Bu şəkildə dayanıqlı su nişanı yoxdur. Əgər AWSRE rejimində qorunubsa, orijinalı da "
+            "yükləyin: o metodlar yalnız orijinalla yoxlana bilir.",
+        ))
+    elif saved is not None and saved["names"] == current_names:
         outcome = saved["outcome"]
 
         if outcome.identical:
@@ -701,11 +944,12 @@ with verify_tab:
             st.error(t("No watermark found", "Su nişanı tapılmadı"))
             st.caption(
                 t(
-                    "Either this copy was never protected with this original, or it "
-                    "was cropped or rotated. AWSRE's methods do not survive cropping "
-                    "or rotation.",
-                    "Ya bu nüsxə həmin orijinalla qorunmayıb, ya da kəsilib və ya "
-                    "fırladılıb. AWSRE metodları kəsmə və fırlatmaya davamlı deyil.",
+                    "No robust watermark either. Either this copy was never protected "
+                    "with this original, or it was cropped or rotated: AWSRE's methods "
+                    "do not survive cropping or rotation (the robust mode does).",
+                    "Dayanıqlı su nişanı da yoxdur. Ya bu nüsxə həmin orijinalla "
+                    "qorunmayıb, ya da kəsilib və ya fırladılıb: AWSRE metodları kəsmə "
+                    "və fırlatmaya davamlı deyil (dayanıqlı rejim isə davamlıdır).",
                 )
             )
 
