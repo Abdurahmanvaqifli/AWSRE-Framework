@@ -627,6 +627,15 @@ def show_robust_details(index: int, entry) -> None:
         type="primary", use_container_width=True, key=f"home_robust_download_{index}",
     )
     st.caption(t("Verification does not need the original.", "Yoxlama üçün orijinal lazım deyil."))
+    if max(entry["original"].shape[:2]) < 900:
+        st.info(t(
+            "This photo is small ({w}×{h} px). The mark is spread over the pixels, so small photos "
+            "carry less of it: heavy JPEG, small crops and Instagram-like resizing are survived less "
+            "often. From about 1000 px on, these attacks were survived in our tests.",
+            "Bu şəkil kiçikdir ({w}×{h} px). Nişan piksellərə paylanır, ona görə kiçik şəkildə ondan "
+            "az olur: güclü JPEG, kiçik kəsmə və Instagram-a bənzər kiçiltməyə daha az dözür. "
+            "Testlərimizdə təxminən 1000 px-dən başlayaraq bu hücumlara dözdü.",
+        ).format(w=entry["original"].shape[1], h=entry["original"].shape[0]))
     psnr_column, ssim_column = st.columns(2)
     with psnr_column:
         st.metric("PSNR", f"{result.psnr:.1f} dB")
@@ -904,14 +913,14 @@ with verify_tab:
             st.markdown(t(
                 "The photo's autocorrelation reveals the repeating hidden tile, which gives back the "
                 "scale and rotation the copy went through. The photo is then folded into one tile, "
-                "aligned with the key's sync pattern, and 48 bits are read (32-bit ID + 16-bit "
-                "checksum). On unmarked photos and with wrong keys this test gave 0 false finds in "
-                "80 trials (research/robust_tiled).",
+                "aligned with the key's sync pattern, and 108 coded bits are read and decoded with an "
+                "error-correcting code (Viterbi) into a 32-bit ID + 16-bit checksum. On unmarked "
+                "photos and with wrong keys this test gave 0 false finds in 80 trials.",
                 "Şəklin avtokorrelyasiyası təkrarlanan gizli kafeli göstərir, bu da nüsxənin keçdiyi "
                 "miqyas və fırlanmanı geri verir. Sonra şəkil bir kafelə qatlanır, açarın "
-                "sinxronizasiya nümunəsi ilə hizalanır və 48 bit oxunur (32-bit ID + 16-bit yoxlama "
-                "cəmi). Nişansız şəkillərdə və səhv açarla 80 sınaqda 0 yalançı tapıntı oldu "
-                "(research/robust_tiled).",
+                "sinxronizasiya nümunəsi ilə hizalanır, 108 kodlanmış bit oxunur və xəta düzəldən kodla "
+                "(Viterbi) 32-bit ID + 16-bit yoxlama cəminə çevrilir. Nişansız şəkillərdə və səhv "
+                "açarla 80 sınaqda 0 yalançı tapıntı oldu.",
             ))
     elif saved is not None and saved["names"] == current_names and saved["outcome"] is None:
         st.error(t("No watermark found", "Su nişanı tapılmadı"))
