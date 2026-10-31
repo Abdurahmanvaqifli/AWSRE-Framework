@@ -1,0 +1,6600 @@
+{
+ "rows": [
+  {
+   "host": "astronaut",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.013953028363357,
+   "seconds": 0.9304807186126709,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.028755903244018555,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.05312681198120117,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.944384430090476,
+   "seconds": 2.502171516418457,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.05714559555053711,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3984375,
+   "z": null,
+   "seconds": 0.028740406036376953,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.55067353862881,
+   "seconds": 0.8721778392791748,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.07421875,
+   "z": null,
+   "seconds": 0.033057212829589844,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5146484375,
+   "z": null,
+   "seconds": 0.048055410385131836,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.538642938477901,
+   "seconds": 0.920130729675293,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5224609375,
+   "z": null,
+   "seconds": 0.0340418815612793,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.05349373817443848,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.82302803363828,
+   "seconds": 0.8465766906738281,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.03992128372192383,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.013671875,
+   "z": null,
+   "seconds": 0.05054140090942383,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.382135163969227,
+   "seconds": 0.6908583641052246,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0009765625,
+   "z": null,
+   "seconds": 0.04254412651062012,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3466796875,
+   "z": null,
+   "seconds": 0.05033230781555176,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.16666666666666666,
+   "z": 7.646502081159277,
+   "seconds": 12.284781455993652,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3037109375,
+   "z": null,
+   "seconds": 0.037619829177856445,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.462890625,
+   "z": null,
+   "seconds": 0.05594587326049805,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.0681209444447,
+   "seconds": 0.60042405128479,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4931640625,
+   "z": null,
+   "seconds": 0.039902687072753906,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.054817914962768555,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.814968162218257,
+   "seconds": 0.3397223949432373,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5224609375,
+   "z": null,
+   "seconds": 0.03283858299255371,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.05540800094604492,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 11.506317352071394,
+   "seconds": 0.5445389747619629,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5234375,
+   "z": null,
+   "seconds": 0.03761553764343262,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5107421875,
+   "z": null,
+   "seconds": 0.054901838302612305,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.192460879822313,
+   "seconds": 1.23262357711792,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.042613983154296875,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.51953125,
+   "z": null,
+   "seconds": 0.05339241027832031,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.80303620141666,
+   "seconds": 0.793341875076294,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5166015625,
+   "z": null,
+   "seconds": 0.04130887985229492,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4990234375,
+   "z": null,
+   "seconds": 0.05870366096496582,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.025219621823997,
+   "seconds": 0.9498121738433838,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.015316009521484375,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0322265625,
+   "z": null,
+   "seconds": 0.024675607681274414,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.38679300808412,
+   "seconds": 0.9635570049285889,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0009765625,
+   "z": null,
+   "seconds": 0.03151988983154297,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0146484375,
+   "z": null,
+   "seconds": 0.036568403244018555,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.041666666666666664,
+   "z": 12.036107815450237,
+   "seconds": 15.151074171066284,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5205078125,
+   "z": null,
+   "seconds": 0.05286550521850586,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5166015625,
+   "z": null,
+   "seconds": 0.045717477798461914,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.972377059043506,
+   "seconds": 1.0412328243255615,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.05305194854736328,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0107421875,
+   "z": null,
+   "seconds": 0.05616617202758789,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.6041666666666666,
+   "z": 5.805298850403172,
+   "seconds": 18.123355388641357,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.52734375,
+   "z": null,
+   "seconds": 0.016442298889160156,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.02554035186767578,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5416666666666666,
+   "z": 5.1896742138511405,
+   "seconds": 18.0370614528656,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.53515625,
+   "z": null,
+   "seconds": 0.038042306900024414,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "astronaut",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.517578125,
+   "z": null,
+   "seconds": 0.02560734748840332,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.564979571848216,
+   "seconds": 0.774547815322876,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.03127861022949219,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.05029797554016113,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.975728167797104,
+   "seconds": 0.6676640510559082,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.03142666816711426,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.37890625,
+   "z": null,
+   "seconds": 0.04369068145751953,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.00149699657835,
+   "seconds": 0.9354147911071777,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0712890625,
+   "z": null,
+   "seconds": 0.02551746368408203,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4931640625,
+   "z": null,
+   "seconds": 0.04815673828125,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.721055950417975,
+   "seconds": 0.6008036136627197,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4013671875,
+   "z": null,
+   "seconds": 0.03134918212890625,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.505859375,
+   "z": null,
+   "seconds": 0.04746556282043457,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.976251373501206,
+   "seconds": 0.6726713180541992,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0185546875,
+   "z": null,
+   "seconds": 0.026680946350097656,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.12890625,
+   "z": null,
+   "seconds": 0.05019187927246094,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.454265076651167,
+   "seconds": 3.0469775199890137,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.1337890625,
+   "z": null,
+   "seconds": 0.030266284942626953,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4072265625,
+   "z": null,
+   "seconds": 0.05256175994873047,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.020833333333333332,
+   "z": 11.270344452543284,
+   "seconds": 8.804181575775146,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3466796875,
+   "z": null,
+   "seconds": 0.01587200164794922,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4599609375,
+   "z": null,
+   "seconds": 0.036103010177612305,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.44655033222612,
+   "seconds": 0.40354204177856445,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.494140625,
+   "z": null,
+   "seconds": 0.014796018600463867,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4970703125,
+   "z": null,
+   "seconds": 0.02452373504638672,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.558775204532413,
+   "seconds": 0.28920578956604004,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.501953125,
+   "z": null,
+   "seconds": 0.04767918586730957,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.49609375,
+   "z": null,
+   "seconds": 0.04876589775085449,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.265406734232707,
+   "seconds": 0.31356310844421387,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5146484375,
+   "z": null,
+   "seconds": 0.047265052795410156,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4931640625,
+   "z": null,
+   "seconds": 0.053297996520996094,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.757743439199512,
+   "seconds": 0.510986328125,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5009765625,
+   "z": null,
+   "seconds": 0.031632423400878906,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4912109375,
+   "z": null,
+   "seconds": 0.055367231369018555,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.455775662665085,
+   "seconds": 0.6763744354248047,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.035120248794555664,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.498046875,
+   "z": null,
+   "seconds": 0.05274176597595215,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.183287754555508,
+   "seconds": 0.5767967700958252,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02213120460510254,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0283203125,
+   "z": null,
+   "seconds": 0.024530410766601562,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.051600684784205,
+   "seconds": 0.7616300582885742,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.029561758041381836,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0009765625,
+   "z": null,
+   "seconds": 0.04323005676269531,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.10416666666666667,
+   "z": 10.188375930786563,
+   "seconds": 12.641477584838867,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5078125,
+   "z": null,
+   "seconds": 0.034459829330444336,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4814453125,
+   "z": null,
+   "seconds": 0.05336737632751465,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.213103968942164,
+   "seconds": 1.0182573795318604,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0087890625,
+   "z": null,
+   "seconds": 0.030933380126953125,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0849609375,
+   "z": null,
+   "seconds": 0.049805402755737305,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3958333333333333,
+   "z": 5.5151331041555105,
+   "seconds": 13.384849071502686,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.50390625,
+   "z": null,
+   "seconds": 0.02620720863342285,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4892578125,
+   "z": null,
+   "seconds": 0.04006338119506836,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4375,
+   "z": 5.995499553363575,
+   "seconds": 13.358076810836792,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.513671875,
+   "z": null,
+   "seconds": 0.03280353546142578,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "coffee",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4892578125,
+   "z": null,
+   "seconds": 0.03408980369567871,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.764928021371198,
+   "seconds": 0.8905243873596191,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.017903804779052734,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.027872085571289062,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.29899092530385,
+   "seconds": 0.6058292388916016,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.015221834182739258,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3720703125,
+   "z": null,
+   "seconds": 0.024074554443359375,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.76022708071753,
+   "seconds": 1.1298677921295166,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.009765625,
+   "z": null,
+   "seconds": 0.01589179039001465,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.501953125,
+   "z": null,
+   "seconds": 0.02326035499572754,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.79320472256747,
+   "seconds": 0.6522660255432129,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.490234375,
+   "z": null,
+   "seconds": 0.015149354934692383,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.024309396743774414,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.61471377246425,
+   "seconds": 0.6825084686279297,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.014713287353515625,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.03125,
+   "z": null,
+   "seconds": 0.024128198623657227,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.621881568307707,
+   "seconds": 0.6425764560699463,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.037109375,
+   "z": null,
+   "seconds": 0.014262199401855469,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3623046875,
+   "z": null,
+   "seconds": 0.023990631103515625,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.757695446305881,
+   "seconds": 0.6983821392059326,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.22265625,
+   "z": null,
+   "seconds": 0.014331817626953125,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4736328125,
+   "z": null,
+   "seconds": 0.025482654571533203,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.81552004360894,
+   "seconds": 0.4077773094177246,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.016954898834228516,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.515625,
+   "z": null,
+   "seconds": 0.025179386138916016,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.077301131905594,
+   "seconds": 0.24825167655944824,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.01851963996887207,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.501953125,
+   "z": null,
+   "seconds": 0.04246354103088379,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.311664551787857,
+   "seconds": 0.26232337951660156,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.484375,
+   "z": null,
+   "seconds": 0.014510393142700195,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.024753808975219727,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4583333333333333,
+   "z": 5.765893738533463,
+   "seconds": 18.195082902908325,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4970703125,
+   "z": null,
+   "seconds": 0.01777935028076172,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.533203125,
+   "z": null,
+   "seconds": 0.02829742431640625,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.6041666666666666,
+   "z": 5.801266654476976,
+   "seconds": 16.95016050338745,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.03330802917480469,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.048758506774902344,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.78791691995433,
+   "seconds": 0.7137222290039062,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02572321891784668,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0263671875,
+   "z": null,
+   "seconds": 0.025462627410888672,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.81516487154641,
+   "seconds": 0.6415982246398926,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.026410818099975586,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.04547262191772461,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.461397441657176,
+   "seconds": 2.6972007751464844,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5029296875,
+   "z": null,
+   "seconds": 0.026437997817993164,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.513671875,
+   "z": null,
+   "seconds": 0.06157851219177246,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.066185461914834,
+   "seconds": 0.6097972393035889,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02686619758605957,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0166015625,
+   "z": null,
+   "seconds": 0.048302650451660156,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5208333333333334,
+   "z": 6.175152716086979,
+   "seconds": 15.471205472946167,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.49609375,
+   "z": null,
+   "seconds": 0.030457258224487305,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.024750709533691406,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4583333333333333,
+   "z": 5.777190287256252,
+   "seconds": 15.101053476333618,
+   "size": [
+    309,
+    515
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.030794143676757812,
+   "size": [
+    309,
+    515
+   ]
+  },
+  {
+   "host": "chelsea",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.513671875,
+   "z": null,
+   "seconds": 0.025522232055664062,
+   "size": [
+    309,
+    515
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 21.22646223908956,
+   "seconds": 1.190735101699829,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.03006720542907715,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.05243492126464844,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.262775859771555,
+   "seconds": 0.9374585151672363,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.04012465476989746,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.37890625,
+   "z": null,
+   "seconds": 0.047536611557006836,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.738060173927014,
+   "seconds": 0.9462344646453857,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0009765625,
+   "z": null,
+   "seconds": 0.03267621994018555,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5,
+   "z": null,
+   "seconds": 0.047902584075927734,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.042134163495557,
+   "seconds": 0.9113304615020752,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.51953125,
+   "z": null,
+   "seconds": 0.0374598503112793,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5009765625,
+   "z": null,
+   "seconds": 0.05957627296447754,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.61973681791355,
+   "seconds": 0.9002416133880615,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.04668402671813965,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0107421875,
+   "z": null,
+   "seconds": 0.05810546875,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.470748490686365,
+   "seconds": 0.9204778671264648,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.050675153732299805,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3515625,
+   "z": null,
+   "seconds": 0.0719747543334961,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.375501654981512,
+   "seconds": 0.8770606517791748,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.1884765625,
+   "z": null,
+   "seconds": 0.038057565689086914,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4716796875,
+   "z": null,
+   "seconds": 0.05523800849914551,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.351567743103786,
+   "seconds": 0.5950384140014648,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.033095359802246094,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.50390625,
+   "z": null,
+   "seconds": 0.0550994873046875,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.591335109287822,
+   "seconds": 0.38852739334106445,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.04094386100769043,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.05434465408325195,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.675442024326737,
+   "seconds": 0.46511006355285645,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5029296875,
+   "z": null,
+   "seconds": 0.048597097396850586,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5048828125,
+   "z": null,
+   "seconds": 0.05811476707458496,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.4702952350642,
+   "seconds": 1.0067362785339355,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5166015625,
+   "z": null,
+   "seconds": 0.04625225067138672,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4921875,
+   "z": null,
+   "seconds": 0.061873674392700195,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.940639664354197,
+   "seconds": 0.8866405487060547,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5107421875,
+   "z": null,
+   "seconds": 0.06799149513244629,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.498046875,
+   "z": null,
+   "seconds": 0.05424022674560547,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.225633740870855,
+   "seconds": 0.8877081871032715,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.015230178833007812,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0341796875,
+   "z": null,
+   "seconds": 0.02450418472290039,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.509673141919745,
+   "seconds": 0.9068782329559326,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0830078125,
+   "z": null,
+   "seconds": 0.03082442283630371,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.318359375,
+   "z": null,
+   "seconds": 0.03615450859069824,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.24796256473041,
+   "seconds": 6.705171585083008,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.517578125,
+   "z": null,
+   "seconds": 0.020894765853881836,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5,
+   "z": null,
+   "seconds": 0.0267484188079834,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.6631035572075,
+   "seconds": 0.8913486003875732,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02006673812866211,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0078125,
+   "z": null,
+   "seconds": 0.0265047550201416,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5416666666666666,
+   "z": 6.121975426144895,
+   "seconds": 16.599352836608887,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.498046875,
+   "z": null,
+   "seconds": 0.019433021545410156,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.039483070373535156,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5208333333333334,
+   "z": 5.824811958455401,
+   "seconds": 16.068872213363647,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.01720738410949707,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "camera",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.025700092315673828,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 21.267028923101833,
+   "seconds": 0.7661576271057129,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.04569888114929199,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.07126688957214355,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.255122081278316,
+   "seconds": 0.7207179069519043,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.03278946876525879,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3828125,
+   "z": null,
+   "seconds": 0.04758048057556152,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.90683379487962,
+   "seconds": 0.9765501022338867,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0263671875,
+   "z": null,
+   "seconds": 0.03061366081237793,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.505859375,
+   "z": null,
+   "seconds": 0.06743001937866211,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.647943960645756,
+   "seconds": 0.799694299697876,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.45703125,
+   "z": null,
+   "seconds": 0.0393218994140625,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5078125,
+   "z": null,
+   "seconds": 0.0666208267211914,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.807664822992813,
+   "seconds": 0.7158553600311279,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.013671875,
+   "z": null,
+   "seconds": 0.03170132637023926,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0654296875,
+   "z": null,
+   "seconds": 0.055454254150390625,
+   "size": [
+    512,
+    768
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.964095150242027,
+   "seconds": 0.6365773677825928,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0478515625,
+   "z": null,
+   "seconds": 0.030728816986083984,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.37109375,
+   "z": null,
+   "seconds": 0.06501889228820801,
+   "size": [
+    342,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.731318666894254,
+   "seconds": 0.49762916564941406,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.2373046875,
+   "z": null,
+   "seconds": 0.02652907371520996,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4521484375,
+   "z": null,
+   "seconds": 0.052892208099365234,
+   "size": [
+    239,
+    358
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 21.339431971094704,
+   "seconds": 0.9802284240722656,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.48828125,
+   "z": null,
+   "seconds": 0.026917457580566406,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.494140625,
+   "z": null,
+   "seconds": 0.052522897720336914,
+   "size": [
+    482,
+    724
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.522563650184917,
+   "seconds": 0.3122525215148926,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.034824371337890625,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5087890625,
+   "z": null,
+   "seconds": 0.048136234283447266,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.229481492242023,
+   "seconds": 0.25926733016967773,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4873046875,
+   "z": null,
+   "seconds": 0.026731491088867188,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.048296213150024414,
+   "size": [
+    341,
+    512
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.613297324126357,
+   "seconds": 0.6530418395996094,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.51953125,
+   "z": null,
+   "seconds": 0.03079509735107422,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.51171875,
+   "z": null,
+   "seconds": 0.052324771881103516,
+   "size": [
+    630,
+    631
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.82323227532968,
+   "seconds": 0.47612714767456055,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.501953125,
+   "z": null,
+   "seconds": 0.030773401260375977,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.04831743240356445,
+   "size": [
+    532,
+    533
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.966394801360828,
+   "seconds": 0.6889071464538574,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02578878402709961,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.029296875,
+   "z": null,
+   "seconds": 0.02356553077697754,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 21.298917648915317,
+   "seconds": 0.6851575374603271,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.04170966148376465,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.005859375,
+   "z": null,
+   "seconds": 0.030889511108398438,
+   "size": [
+    683,
+    1024
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.454046421626877,
+   "seconds": 0.6517961025238037,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4931640625,
+   "z": null,
+   "seconds": 0.014962911605834961,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.505859375,
+   "z": null,
+   "seconds": 0.02461695671081543,
+   "size": [
+    410,
+    328
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 21.00795708002104,
+   "seconds": 0.5914120674133301,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.00390625,
+   "z": null,
+   "seconds": 0.02109813690185547,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0546875,
+   "z": null,
+   "seconds": 0.02514791488647461,
+   "size": [
+    546,
+    819
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.20833333333333334,
+   "z": 8.56628037743872,
+   "seconds": 13.363763809204102,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4794921875,
+   "z": null,
+   "seconds": 0.0316920280456543,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5048828125,
+   "z": null,
+   "seconds": 0.027521133422851562,
+   "size": [
+    359,
+    564
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5625,
+   "z": 5.723793351188444,
+   "seconds": 14.052440643310547,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4873046875,
+   "z": null,
+   "seconds": 0.048378944396972656,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "rocket",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.505859375,
+   "z": null,
+   "seconds": 0.024143457412719727,
+   "size": [
+    310,
+    515
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.21150212685278,
+   "seconds": 0.9629476070404053,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.01665353775024414,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02454400062561035,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.96370505239305,
+   "seconds": 1.0943870544433594,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.017853260040283203,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3671875,
+   "z": null,
+   "seconds": 0.026880502700805664,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.805056594155545,
+   "seconds": 1.917720079421997,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.025390625,
+   "z": null,
+   "seconds": 0.016396522521972656,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.478515625,
+   "z": null,
+   "seconds": 0.0412907600402832,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.40236604378748,
+   "seconds": 1.197066307067871,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.494140625,
+   "z": null,
+   "seconds": 0.0252230167388916,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.48828125,
+   "z": null,
+   "seconds": 0.02524113655090332,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.710473763495894,
+   "seconds": 1.020444631576538,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.02059483528137207,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.017578125,
+   "z": null,
+   "seconds": 0.027855634689331055,
+   "size": [
+    768,
+    768
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.84541542286483,
+   "seconds": 0.9154624938964844,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0048828125,
+   "z": null,
+   "seconds": 0.01871633529663086,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3427734375,
+   "z": null,
+   "seconds": 0.02774524688720703,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 12.337103232697872,
+   "seconds": 0.9934048652648926,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3115234375,
+   "z": null,
+   "seconds": 0.03568410873413086,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4521484375,
+   "z": null,
+   "seconds": 0.06087613105773926,
+   "size": [
+    358,
+    358
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.902652102814605,
+   "seconds": 0.7463130950927734,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5244140625,
+   "z": null,
+   "seconds": 0.039217233657836914,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4912109375,
+   "z": null,
+   "seconds": 0.05584073066711426,
+   "size": [
+    724,
+    724
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.74638251929158,
+   "seconds": 0.3314840793609619,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.498046875,
+   "z": null,
+   "seconds": 0.01704096794128418,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4833984375,
+   "z": null,
+   "seconds": 0.02593064308166504,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 12.423571511320297,
+   "seconds": 0.542365550994873,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.032465219497680664,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.486328125,
+   "z": null,
+   "seconds": 0.04996013641357422,
+   "size": [
+    512,
+    512
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.276370829593112,
+   "seconds": 1.1345133781433105,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.498046875,
+   "z": null,
+   "seconds": 0.04132795333862305,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4736328125,
+   "z": null,
+   "seconds": 0.04850029945373535,
+   "size": [
+    945,
+    945
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.885911050194364,
+   "seconds": 1.3480579853057861,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5009765625,
+   "z": null,
+   "seconds": 0.06092643737792969,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.484375,
+   "z": null,
+   "seconds": 0.030757427215576172,
+   "size": [
+    799,
+    799
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.00749289996624,
+   "seconds": 0.8601336479187012,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.018776416778564453,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0390625,
+   "z": null,
+   "seconds": 0.025687217712402344,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.715473787210982,
+   "seconds": 0.8640491962432861,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.01171875,
+   "z": null,
+   "seconds": 0.015160560607910156,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0087890625,
+   "z": null,
+   "seconds": 0.025764942169189453,
+   "size": [
+    1024,
+    1024
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.411574370141649,
+   "seconds": 4.611512660980225,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.039084434509277344,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.04657888412475586,
+   "size": [
+    614,
+    491
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.69036354550342,
+   "seconds": 1.2532925605773926,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.06004452705383301,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0185546875,
+   "z": null,
+   "seconds": 0.05434584617614746,
+   "size": [
+    819,
+    819
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5,
+   "z": 6.1906456697008085,
+   "seconds": 17.771244049072266,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5107421875,
+   "z": null,
+   "seconds": 0.024425745010375977,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4833984375,
+   "z": null,
+   "seconds": 0.025955915451049805,
+   "size": [
+    564,
+    564
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5,
+   "z": 6.621017624075447,
+   "seconds": 14.693391799926758,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5029296875,
+   "z": null,
+   "seconds": 0.017331838607788086,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "immunohistochemistry",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4833984375,
+   "z": null,
+   "seconds": 0.029147863388061523,
+   "size": [
+    515,
+    515
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.761180791227726,
+   "seconds": 0.7680230140686035,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.01726388931274414,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.024140119552612305,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.796732048624175,
+   "seconds": 0.7590234279632568,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.018106698989868164,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3798828125,
+   "z": null,
+   "seconds": 0.02627730369567871,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.60613300395439,
+   "seconds": 0.9649262428283691,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.126953125,
+   "z": null,
+   "seconds": 0.016806602478027344,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.03203010559082031,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.26359259528051,
+   "seconds": 1.294557809829712,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.39453125,
+   "z": null,
+   "seconds": 0.01654195785522461,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.486328125,
+   "z": null,
+   "seconds": 0.024104833602905273,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.382691097863596,
+   "seconds": 8.14925765991211,
+   "size": [
+    670,
+    768
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0107421875,
+   "z": null,
+   "seconds": 0.02049708366394043,
+   "size": [
+    670,
+    768
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.1474609375,
+   "z": null,
+   "seconds": 0.02547740936279297,
+   "size": [
+    670,
+    768
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.146762792930947,
+   "seconds": 4.106782674789429,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.3310546875,
+   "z": null,
+   "seconds": 0.015636682510375977,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4013671875,
+   "z": null,
+   "seconds": 0.02485823631286621,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 12.652918830337185,
+   "seconds": 2.950554847717285,
+   "size": [
+    313,
+    358
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4208984375,
+   "z": null,
+   "seconds": 0.015862703323364258,
+   "size": [
+    313,
+    358
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.470703125,
+   "z": null,
+   "seconds": 0.025072574615478516,
+   "size": [
+    313,
+    358
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.769268390701221,
+   "seconds": 0.4006333351135254,
+   "size": [
+    631,
+    724
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.01578354835510254,
+   "size": [
+    631,
+    724
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4794921875,
+   "z": null,
+   "seconds": 0.025176286697387695,
+   "size": [
+    631,
+    724
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.045418611440178,
+   "seconds": 0.29875707626342773,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5048828125,
+   "z": null,
+   "seconds": 0.0191800594329834,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.482421875,
+   "z": null,
+   "seconds": 0.026008129119873047,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.526091772180338,
+   "seconds": 0.2885582447052002,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.490234375,
+   "z": null,
+   "seconds": 0.016219139099121094,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.482421875,
+   "z": null,
+   "seconds": 0.02752065658569336,
+   "size": [
+    446,
+    512
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5416666666666666,
+   "z": 5.8786843616625655,
+   "seconds": 25.01899552345276,
+   "size": [
+    824,
+    825
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5166015625,
+   "z": null,
+   "seconds": 0.020205259323120117,
+   "size": [
+    824,
+    825
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.501953125,
+   "z": null,
+   "seconds": 0.02656102180480957,
+   "size": [
+    824,
+    825
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5208333333333334,
+   "z": 6.010469393195002,
+   "seconds": 21.644827127456665,
+   "size": [
+    696,
+    697
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4677734375,
+   "z": null,
+   "seconds": 0.01886773109436035,
+   "size": [
+    696,
+    697
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4873046875,
+   "z": null,
+   "seconds": 0.02501988410949707,
+   "size": [
+    696,
+    697
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.70930972195249,
+   "seconds": 0.9276175498962402,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.014697074890136719,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.01953125,
+   "z": null,
+   "seconds": 0.024193525314331055,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.28020882810196,
+   "seconds": 0.7764294147491455,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.029091835021972656,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0048828125,
+   "z": null,
+   "seconds": 0.040564537048339844,
+   "size": [
+    893,
+    1024
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.86689853164985,
+   "seconds": 3.4971072673797607,
+   "size": [
+    536,
+    428
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4833984375,
+   "z": null,
+   "seconds": 0.015805482864379883,
+   "size": [
+    536,
+    428
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4794921875,
+   "z": null,
+   "seconds": 0.02586674690246582,
+   "size": [
+    536,
+    428
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.718370233749024,
+   "seconds": 6.989557981491089,
+   "size": [
+    714,
+    819
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0078125,
+   "z": null,
+   "seconds": 0.020751476287841797,
+   "size": [
+    714,
+    819
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.12109375,
+   "z": null,
+   "seconds": 0.025393009185791016,
+   "size": [
+    714,
+    819
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5625,
+   "z": 5.692951139459501,
+   "seconds": 16.35848379135132,
+   "size": [
+    485,
+    564
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.494140625,
+   "z": null,
+   "seconds": 0.014996528625488281,
+   "size": [
+    485,
+    564
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.02488398551940918,
+   "size": [
+    485,
+    564
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5208333333333334,
+   "z": 5.892081309498142,
+   "seconds": 16.37013530731201,
+   "size": [
+    436,
+    515
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4921875,
+   "z": null,
+   "seconds": 0.015409231185913086,
+   "size": [
+    436,
+    515
+   ]
+  },
+  {
+   "host": "hubble_deep_field",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.48046875,
+   "z": null,
+   "seconds": 0.024985551834106445,
+   "size": [
+    436,
+    515
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "none",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.77266533438783,
+   "seconds": 0.7431838512420654,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "none",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.015469551086425781,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "none",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.023337364196777344,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.224728698487347,
+   "seconds": 0.6424441337585449,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.015938997268676758,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.380859375,
+   "z": null,
+   "seconds": 0.024587631225585938,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q50",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.663936045402846,
+   "seconds": 0.6198258399963379,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q50",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0107421875,
+   "z": null,
+   "seconds": 0.016150951385498047,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q50",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5078125,
+   "z": null,
+   "seconds": 0.026704788208007812,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q30",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 18.73937493021137,
+   "seconds": 0.6583919525146484,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q30",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4873046875,
+   "z": null,
+   "seconds": 0.015502214431762695,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "JPEG q30",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5078125,
+   "z": null,
+   "seconds": 0.0236513614654541,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 75%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.67354314958872,
+   "seconds": 0.9055516719818115,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 75%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.014822721481323242,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 75%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0302734375,
+   "z": null,
+   "seconds": 0.024787187576293945,
+   "size": [
+    511,
+    768
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 50%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.74174993062095,
+   "seconds": 0.6189122200012207,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 50%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.033203125,
+   "z": null,
+   "seconds": 0.021031618118286133,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 50%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.375,
+   "z": null,
+   "seconds": 0.04320693016052246,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 35%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 14.401383266829614,
+   "seconds": 0.6633493900299072,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 35%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.22265625,
+   "z": null,
+   "seconds": 0.01486063003540039,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Downscale 35%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4599609375,
+   "z": null,
+   "seconds": 0.02431774139404297,
+   "size": [
+    238,
+    358
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 50% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 17.891084873612755,
+   "seconds": 0.3690969944000244,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 50% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5029296875,
+   "z": null,
+   "seconds": 0.027081727981567383,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 50% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.05286264419555664,
+   "size": [
+    481,
+    724
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% area",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.228088750444448,
+   "seconds": 0.3237292766571045,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% area",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4755859375,
+   "z": null,
+   "seconds": 0.02838587760925293,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% area",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.50390625,
+   "z": null,
+   "seconds": 0.05250048637390137,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.474329059687488,
+   "seconds": 0.2854492664337158,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4580078125,
+   "z": null,
+   "seconds": 0.014235734939575195,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Crop 25% + JPEG 70",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5068359375,
+   "z": null,
+   "seconds": 0.02358222007751465,
+   "size": [
+    340,
+    512
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 16.59804889556181,
+   "seconds": 0.9223008155822754,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4951171875,
+   "z": null,
+   "seconds": 0.014950752258300781,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 5\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4921875,
+   "z": null,
+   "seconds": 0.024840593338012695,
+   "size": [
+    628,
+    629
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 15.206968972095314,
+   "seconds": 0.555361270904541,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4755859375,
+   "z": null,
+   "seconds": 0.02433609962463379,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Rotate 20\u00b0 + crop",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5029296875,
+   "z": null,
+   "seconds": 0.05201101303100586,
+   "size": [
+    532,
+    531
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Noise \u03c38",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.660977791318054,
+   "seconds": 0.6537950038909912,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Noise \u03c38",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.014502763748168945,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Noise \u03c38",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0322265625,
+   "z": null,
+   "seconds": 0.026851177215576172,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Brightness/contrast",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 20.827444975720873,
+   "seconds": 1.01774263381958,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Brightness/contrast",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.013394355773925781,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Brightness/contrast",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.024615049362182617,
+   "size": [
+    681,
+    1024
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Instagram-like",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 13.131697667135628,
+   "seconds": 3.1454410552978516,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Instagram-like",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4853515625,
+   "z": null,
+   "seconds": 0.014689207077026367,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Instagram-like",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5126953125,
+   "z": null,
+   "seconds": 0.024695634841918945,
+   "size": [
+    409,
+    326
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screenshot 80%",
+   "method": "Tiled prototype (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": 19.660961796943706,
+   "seconds": 0.7614054679870605,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screenshot 80%",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.0,
+   "z": null,
+   "seconds": 0.016087055206298828,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screenshot 80%",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": true,
+   "wrong_id": false,
+   "raw_ber": 0.015625,
+   "z": null,
+   "seconds": 0.02626800537109375,
+   "size": [
+    545,
+    819
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4375,
+   "z": 5.518321975482585,
+   "seconds": 13.766696691513062,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4736328125,
+   "z": null,
+   "seconds": 0.014178276062011719,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.50390625,
+   "z": null,
+   "seconds": 0.02462935447692871,
+   "size": [
+    358,
+    564
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "Tiled prototype (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.4375,
+   "z": 5.535338302909578,
+   "seconds": 11.766563415527344,
+   "size": [
+    309,
+    515
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.5048828125,
+   "z": null,
+   "seconds": 0.013836145401000977,
+   "size": [
+    309,
+    515
+   ]
+  },
+  {
+   "host": "cat",
+   "attack": "Screen\u2192camera strong tilt (sim.)",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "found": false,
+   "wrong_id": false,
+   "raw_ber": 0.509765625,
+   "z": null,
+   "seconds": 0.023569345474243164,
+   "size": [
+    309,
+    515
+   ]
+  }
+ ],
+ "quality": [
+  {
+   "host": "astronaut",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.17162960770254,
+   "ssim": 0.9863570726954617
+  },
+  {
+   "host": "astronaut",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 48.75035177329326,
+   "ssim": 0.990982015010281
+  },
+  {
+   "host": "astronaut",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 53.453058493003745,
+   "ssim": 0.9964999918511563
+  },
+  {
+   "host": "coffee",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.067907169359074,
+   "ssim": 0.9874854292343609
+  },
+  {
+   "host": "coffee",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 46.858209431771876,
+   "ssim": 0.9901624023715887
+  },
+  {
+   "host": "coffee",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 51.663706862325625,
+   "ssim": 0.9963341185052538
+  },
+  {
+   "host": "chelsea",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.02417834869802,
+   "ssim": 0.9817954382855091
+  },
+  {
+   "host": "chelsea",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 46.84331999112845,
+   "ssim": 0.9886450745279312
+  },
+  {
+   "host": "chelsea",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 51.54240999931634,
+   "ssim": 0.9957496778217702
+  },
+  {
+   "host": "camera",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.05213586799586,
+   "ssim": 0.9866520749454442
+  },
+  {
+   "host": "camera",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 48.61484843839872,
+   "ssim": 0.988077128349908
+  },
+  {
+   "host": "camera",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 53.37448270253559,
+   "ssim": 0.9953868557959042
+  },
+  {
+   "host": "rocket",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.05482095831848,
+   "ssim": 0.9836470189123148
+  },
+  {
+   "host": "rocket",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 46.87564825107117,
+   "ssim": 0.9857205345885148
+  },
+  {
+   "host": "rocket",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 51.63768937764168,
+   "ssim": 0.9945701195926491
+  },
+  {
+   "host": "immunohistochemistry",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.019591728818654,
+   "ssim": 0.9881048146735918
+  },
+  {
+   "host": "immunohistochemistry",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 48.61510310049138,
+   "ssim": 0.9968690759435911
+  },
+  {
+   "host": "immunohistochemistry",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 53.41221622096447,
+   "ssim": 0.9988968104177757
+  },
+  {
+   "host": "hubble_deep_field",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.05306205742177,
+   "ssim": 0.9850582382544827
+  },
+  {
+   "host": "hubble_deep_field",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 48.22400006754027,
+   "ssim": 0.9929897850768179
+  },
+  {
+   "host": "hubble_deep_field",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 52.913524784240316,
+   "ssim": 0.9973887372002266
+  },
+  {
+   "host": "cat",
+   "method": "Tiled prototype (blind)",
+   "psnr": 42.02355561302792,
+   "ssim": 0.9816093801801334
+  },
+  {
+   "host": "cat",
+   "method": "DCT \u03b115 (site, non-blind)",
+   "psnr": 46.84331999112845,
+   "ssim": 0.9886421017467657
+  },
+  {
+   "host": "cat",
+   "method": "DCT-QIM \u03b115 (blind)",
+   "psnr": 51.525570754725734,
+   "ssim": 0.9957145155722557
+  }
+ ],
+ "false_positive": [
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.160635097596334
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.118734555277393
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.8834229433562015
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.265755969509847
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.5121023898095345
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.7059989993015225
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.028450494473081
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.680621999246616
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.019076102707483
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.72523566353101
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.128895408580159
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.755228627974051
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.863156838323781
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.895974883662853
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.345597802962034
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.782055869809984
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.300295076510248
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.418372042275416
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.797142119581853
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.048796442845391
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.9047060858059535
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.562700717197072
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.946968502723688
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.465605522096443
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.833189667366366
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.852305608695841
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.857217176552363
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.270041229623281
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.83081867773054
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.868624551232102
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.7089543019234625
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.886218041622888
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.822387382029817
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.708258557263491
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.340890807514972
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.828449534474751
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.813206275548524
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.423330893109532
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.92611308977444
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.615631073772702
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.026682111668566
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.007699752935123
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.909572101260626
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.068879600798774
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.305595859256266
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.272915861026421
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.505056421871556
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.750045430899195
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.20974611607457
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.032082815989433
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.8159587748173065
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.497087886323251
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.902605856993332
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.912104253552449
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.627316139451122
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.569142794804243
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.74959642810651
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.2802978677610675
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.428815839343467
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.632300190645413
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.902655228462822
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.903100639384762
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.474076470264416
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.288290350046156
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.013333007454091
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.816001447911428
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.905365700779542
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.231074945736361
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 6.304964509198174
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.912936696436344
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.9047060858059535
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.673855547404541
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.946968502723688
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.267246979111061
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.833189667366366
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.827431670629486
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.857217176552363
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 5.955990011806655
+  },
+  {
+   "case": "unmarked",
+   "found": false,
+   "z": 5.83081867773054
+  },
+  {
+   "case": "wrong key",
+   "found": false,
+   "z": 6.037892596108809
+  }
+ ]
+}
