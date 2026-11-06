@@ -1,4 +1,4 @@
-﻿"""
+"""
 AWSRE recommendation core (no Streamlit code).
 
 host + watermark features -> ML prediction for every trained
@@ -32,35 +32,57 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 _PRIMARY_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results"
+_FIVE_METHOD_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results_v2_5methods"
 _BACKUP_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results_v1_backup_3methods"
+
+# Hugging Face model repositories, newest first. The 5-method models
+# (research/five_method/) go to the first one; the dissertation's 3-method
+# models stay in the second as a fallback, so the site keeps working even
+# before (or without) the 5-method upload.
+FIVE_METHOD_MODEL_REPO = "avaqifli/awsre-models-5methods"
+THREE_METHOD_MODEL_REPO = "avaqifli/awsre-models"
+
+
+def _has_models(folder: Path) -> bool:
+    return (folder / "models" / "model_metadata.json").exists()
 
 
 def _resolve_results_dir() -> Path:
-    """Prefer the primary results directory once it has a real, trained
-    model_metadata.json (i.e. a finished train_performance_models.py run
-    on the current, possibly-larger dataset). Until then, fall back to the
-    v1 backup -- fully trained on the original MS-COCO + Oxford-Pet run for
-    DCT/DWT/DCT-SVD. No file is copied or moved; this only decides which
-    directory to read models from.
+    """Use the first results directory that holds a trained
+    model_metadata.json: a local full run, then the 5-method models, then
+    the dissertation's 3-method models. No file is copied or moved; this
+    only decides which directory to read models from.
     """
-    if (_PRIMARY_RESULTS_DIR / "models" / "model_metadata.json").exists():
-        return _PRIMARY_RESULTS_DIR
-    if (_BACKUP_RESULTS_DIR / "models" / "model_metadata.json").exists():
-        return _BACKUP_RESULTS_DIR
+    for folder in (_PRIMARY_RESULTS_DIR, _FIVE_METHOD_RESULTS_DIR, _BACKUP_RESULTS_DIR):
+        if _has_models(folder):
+            return folder
     return _PRIMARY_RESULTS_DIR
 
 
 def _download_models_if_missing() -> None:
     """On the hosted website the trained models are not in the code
-    repository (they are ~1.4 GB); fetch them once from the Hugging Face
-    model repository into the backup results folder."""
-    for folder in (_PRIMARY_RESULTS_DIR, _BACKUP_RESULTS_DIR):
-        if (folder / "models" / "model_metadata.json").exists():
-            return
+    repository (they are large); fetch them once from Hugging Face. The
+    5-method repository is tried first; if it does not exist yet, the
+    3-method models are downloaded instead."""
+    if _has_models(_PRIMARY_RESULTS_DIR) or _has_models(_FIVE_METHOD_RESULTS_DIR):
+        return
     from huggingface_hub import snapshot_download
 
+    # Tried even when the 3-method models are already on disk, so a running
+    # site picks up the 5-method models after a reboot once they exist.
+    try:
+        snapshot_download(
+            repo_id=FIVE_METHOD_MODEL_REPO,
+            local_dir=str(_FIVE_METHOD_RESULTS_DIR / "models"),
+        )
+        if _has_models(_FIVE_METHOD_RESULTS_DIR):
+            return
+    except Exception:
+        pass
+    if _has_models(_BACKUP_RESULTS_DIR):
+        return
     snapshot_download(
-        repo_id="avaqifli/awsre-models",
+        repo_id=THREE_METHOD_MODEL_REPO,
         local_dir=str(_BACKUP_RESULTS_DIR / "models"),
     )
 
@@ -82,6 +104,9 @@ ATTACK_MODEL_CANDIDATES = [
 ]
 
 MODEL_METADATA_PATH = MODEL_DIR / "model_metadata.json"
+# Written by research/five_method/train_five_method_models.py: test-set
+# metrics of exactly these models (absent for the 3-method models).
+MODEL_SUMMARY_PATH = MODEL_DIR / "model_summary.json"
 
 
 # ============================================================
@@ -182,6 +207,53 @@ def load_trained_domain(metadata_path: Path) -> Tuple[List[str], List[float]]:
 
 
 TRAINED_METHODS, TRAINED_ALPHAS = load_trained_domain(MODEL_METADATA_PATH)
+
+
+def load_model_summary() -> Optional[dict]:
+    """Test-set results of the loaded models (model_summary.json), or None
+    for the dissertation's 3-method models, which have no such file (their
+    numbers are in research_results.py)."""
+    try:
+        return json.loads(MODEL_SUMMARY_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+MODEL_SUMMARY = load_model_summary()
+
+
+# ============================================================
+# WHICH METHODS FIT THIS PHOTO
+# Some methods have less room than others: DWT-SVD embeds into the
+# half-size wavelet band, so it needs photos of about 512 px or more for
+# the 32x32 mark. A strategy that cannot embed the mark into this photo
+# is not offered (no prediction is shown for it).
+# ============================================================
+
+_FEASIBLE_CACHE: Dict[Tuple[int, int, str], bool] = {}
+
+
+def method_fits(method: str, height: int, width: int) -> bool:
+    cache_key = (int(height), int(width), method)
+    if cache_key not in _FEASIBLE_CACHE:
+        from watermarking.registry import create_watermarker
+
+        needed_h, needed_w = WATERMARK_FEATURE_SIZE
+        try:
+            algorithm = create_watermarker(method)
+            if hasattr(algorithm, "maximum_watermark_shape"):
+                capacity = algorithm.maximum_watermark_shape(np.zeros((int(height), int(width)), dtype=np.uint8))
+            else:
+                capacity = (int(height) // 8, int(width) // 8)
+            fits = int(capacity[0]) >= needed_h and int(capacity[1]) >= needed_w
+        except Exception:
+            fits = False
+        _FEASIBLE_CACHE[cache_key] = fits
+    return _FEASIBLE_CACHE[cache_key]
+
+
+def feasible_methods(height: int, width: int, methods: Optional[List[str]] = None) -> List[str]:
+    return [m for m in (methods or TRAINED_METHODS) if method_fits(m, height, width)]
 
 
 # ============================================================
@@ -346,11 +418,15 @@ def predict_candidates(
     methods: Optional[List[str]] = None,
     alphas: Optional[List[float]] = None,
 ) -> pd.DataFrame:
-    """Predicted clean quality, robustness and time for every strategy."""
+    """Predicted clean quality, robustness and time for every strategy
+    that can embed the mark into this photo."""
+    usable = feasible_methods(int(host_row["height"]), int(host_row["width"]), methods)
+    if not usable:
+        raise ValueError("No trained method can embed the 32x32 mark into this photo.")
     candidates = build_candidate_frame(
         host_row,
         watermark_row,
-        methods or TRAINED_METHODS,
+        usable,
         alphas or TRAINED_ALPHAS,
     )
 

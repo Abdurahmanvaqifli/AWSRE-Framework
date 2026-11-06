@@ -12,6 +12,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from core.recommender import MODEL_SUMMARY, TRAINED_METHODS
 from i18n import t
 
 
@@ -90,7 +91,65 @@ def _literature_table() -> pd.DataFrame:
     )
 
 
+def _pct(value) -> str:
+    return "—" if value is None else f"{100 * float(value):.1f}%"
+
+
+def show_current_model_results() -> None:
+    """Test-set results of the models the site is using now, read from
+    model_summary.json written when they were trained. Shown only for the
+    5-method models; nothing here is typed in by hand."""
+    summary = MODEL_SUMMARY
+    if not summary:
+        return
+    rec = summary.get("recommendation") or {}
+    r2 = summary.get("r2") or {}
+    best = rec.get("best_fixed_strategy") or {}
+    st.subheader(t("Models in use: {k} methods", "İstifadə olunan modellər: {k} metod").format(k=len(summary["methods"])))
+    st.markdown(t(
+        "The site now chooses among **{n} strategies** ({m}; α {a}). Trained on {rows:,} measurements "
+        "from {hosts} host images; tested on host images never seen in training ({ctx} test contexts).",
+        "Sayt indi **{n} strategiya** arasından seçir ({m}; α {a}). {hosts} əsas şəkil üzrə {rows:,} "
+        "ölçmə ilə öyrədilib; öyrənmədə görülməmiş şəkillər üzərində test olunub ({ctx} test konteksti).",
+    ).format(
+        n=summary["strategies"], m=", ".join(summary["methods"]),
+        a=", ".join(f"{a:g}" for a in summary["alphas"]),
+        rows=summary["dataset_rows"], hosts=summary["hosts"], ctx=rec.get("contexts", 0),
+    ))
+    st.dataframe(pd.DataFrame([
+        {t("Prediction", "Proqnoz"): "PSNR", "R²": f"{r2.get('clean_psnr', float('nan')):.3f}"},
+        {t("Prediction", "Proqnoz"): "SSIM", "R²": f"{r2.get('clean_ssim', float('nan')):.3f}"},
+        {t("Prediction", "Proqnoz"): t("BER after attacks (mean)", "Hücumdan sonra BER (orta)"),
+         "R²": f"{r2.get('mean_attack_ber', float('nan')):.3f}"},
+        {t("Prediction", "Proqnoz"): t("Embedding time", "Yerləşdirmə vaxtı"),
+         "R²": f"{r2.get('embedding_time_seconds', float('nan')):.3f}"},
+    ]), hide_index=True, use_container_width=True)
+    st.dataframe(pd.DataFrame([
+        {t("Choice", "Seçim"): t("AWSRE (all {k} methods)", "AWSRE (bütün {k} metod)").format(k=len(summary["methods"])),
+         t("Pareto hit rate", "Pareto uğur faizi"): _pct(rec.get("pareto_hit_rate"))},
+        {t("Choice", "Seçim"): t("Best fixed strategy: {m}, α = {a:g}", "Ən yaxşı sabit strategiya: {m}, α = {a:g}").format(
+            m=best.get("method", "?"), a=float(best.get("alpha", 0))),
+         t("Pareto hit rate", "Pareto uğur faizi"): _pct(best.get("pareto_hit_rate"))},
+        {t("Choice", "Seçim"): t("AWSRE limited to the old 3 methods", "AWSRE yalnız köhnə 3 metodla"),
+         t("Pareto hit rate", "Pareto uğur faizi"): _pct(rec.get("old3_only_pareto_hit_rate_within_all"))},
+    ]), hide_index=True, use_container_width=True)
+    shares = rec.get("awsre_pick_share_by_method") or {}
+    st.caption(t(
+        "Pareto hit = the chosen strategy is on the real (measured) Pareto front of all {n} strategies. "
+        "With more strategies the front is larger, so these rates are not directly comparable with "
+        "the dissertation's 3-method numbers below. How often AWSRE picks each method: {s}.",
+        "Pareto uğuru = seçilən strategiya bütün {n} strategiyanın real (ölçülmüş) Pareto cəbhəsindədir. "
+        "Strategiya çox olduqca cəbhə böyüyür, ona görə bu faizlər aşağıdakı dissertasiya "
+        "(3 metod) rəqəmləri ilə birbaşa müqayisə olunmur. AWSRE hər metodu nə qədər seçir: {s}.",
+    ).format(n=summary["strategies"], s=", ".join(f"{k} {100 * v:.0f}%" for k, v in shares.items())))
+    st.divider()
+
+
 def show_research_results() -> None:
+    show_current_model_results()
+    if MODEL_SUMMARY:
+        st.markdown(t("### Dissertation run (3 methods, 15 strategies)",
+                      "### Dissertasiya təcrübəsi (3 metod, 15 strategiya)"))
     st.subheader(t("Test on unseen data", "Görülməmiş verilənlər üzərində test"))
     st.markdown(
         t(
@@ -163,14 +222,16 @@ def show_limitations_and_future_work() -> None:
             "DCT α = 15 in 318 of 320 test contexts. The oracle, using real measurements instead of "
             "predictions, also picks DCT α = 15 in 84% of them, so this reflects the data, not a "
             "model bias. Adaptivity pays off mainly under blur and when a minimum PSNR is required.\n"
-            "- **The 3 methods AWSRE chooses from need the original photo to verify** (non-blind), "
+            "- **The methods AWSRE chooses from need the original photo to verify** (non-blind; "
+            "DCT-QIM, when included, is the exception), "
             "and rotation or cropping destroys their mark. The separate robust mode (below) is "
             "verified without the original, but it is not part of the ML recommender.",
             "- **Bir strategiya üstünlük təşkil edir.** Vaxt meyarı olmadan (yalnız MSE və BER) AWSRE "
             "320 test kontekstindən 318-də DCT α = 15 seçir. Proqnoz əvəzinə real ölçmələrdən istifadə "
             "edən oracle da onların 84%-də DCT α = 15 seçir, yəni bu, modelin meyli deyil, verilənlərin "
             "özünü əks etdirir. Adaptivlik əsasən bulanıqlıqda və minimum PSNR tələb olunanda fayda verir.\n"
-            "- **AWSRE-nin seçdiyi 3 metod yoxlama üçün orijinal şəkil tələb edir** (kor olmayan), "
+            "- **AWSRE-nin seçdiyi metodlar yoxlama üçün orijinal şəkil tələb edir** (kor olmayan; "
+            "DCT-QIM, əgər daxildirsə, istisnadır), "
             "fırlatma və kəsmə isə onların nişanını məhv edir. Ayrıca dayanıqlı rejim (aşağıda) "
             "orijinalsız yoxlanılır, lakin ML tövsiyə sisteminin hissəsi deyil.",
         )
