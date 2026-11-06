@@ -39,7 +39,7 @@ from core.protect import (
     protect,
     verify,
 )
-from core.recommender import TRAINED_ALPHAS, TRAINED_METHODS
+from core.recommender import MODEL_SUMMARY, TRAINED_ALPHAS, TRAINED_METHODS
 from core.robust_watermark import MAX_ID, protect_robust, real_world_test, verify_blind
 from core.robust_watermark import MIN_SIDE as ROBUST_MIN_SIDE
 from core.recommender import load_models as _load_models_uncached
@@ -63,6 +63,13 @@ PHOTO_TYPES = ["png", "jpg", "jpeg", "bmp", "tif", "tiff", "webp"]
 @st.cache_resource(show_spinner=False)
 def load_models():
     return _load_models_uncached()
+
+
+def _pareto_hit_text() -> str:
+    """Pareto hit rate of the models in use: from model_summary.json for the
+    5-method models, the dissertation's 94.7% for the 3-method models."""
+    rate = ((MODEL_SUMMARY or {}).get("recommendation") or {}).get("pareto_hit_rate")
+    return f"{100 * rate:.1f}%" if rate is not None else "94.7%"
 
 
 def read_rgb(uploaded) -> np.ndarray:
@@ -228,10 +235,11 @@ def show_strategy_grid(result) -> None:
         for win, pareto, psnr in zip(grid["is_winner"], grid["pareto_optimal"], grid["pred_clean_psnr"])
     ]
     grid["ber_label"] = grid["pred_mean_attack_ber"].map(lambda ber: t("{b:.1%} wrong", "{b:.1%} səhv").format(b=ber))
+    shown_methods = [m for m in TRAINED_METHODS if m in set(grid["method"])]
     alpha_order = [f"α {a:g}" for a in TRAINED_ALPHAS]
     base = alt.Chart(grid).encode(
         x=alt.X("alpha_label:N", sort=alpha_order, title=None, axis=alt.Axis(labelAngle=0, orient="top")),
-        y=alt.Y("method:N", sort=TRAINED_METHODS, title=None),
+        y=alt.Y("method:N", sort=shown_methods, title=None),
     )
     cells = base.mark_rect(stroke="white", strokeWidth=2).encode(
         color=alt.Color(
@@ -249,12 +257,12 @@ def show_strategy_grid(result) -> None:
     winner_box = (
         alt.Chart(grid[grid["is_winner"]])
         .mark_rect(fill=None, stroke=TEAL, strokeWidth=4)
-        .encode(x=alt.X("alpha_label:N", sort=alpha_order), y=alt.Y("method:N", sort=TRAINED_METHODS))
+        .encode(x=alt.X("alpha_label:N", sort=alpha_order), y=alt.Y("method:N", sort=shown_methods))
     )
     text = base.mark_text(fontSize=13, fontWeight="bold", dy=-8).encode(text="label:N", color=alt.value("#13201F"))
     ber_text = base.mark_text(fontSize=11, dy=9).encode(text="ber_label:N", color=alt.value("#7A2E0E"))
     st.altair_chart(
-        (cells + winner_box + text + ber_text).properties(height=64 * len(TRAINED_METHODS) + 36),
+        (cells + winner_box + text + ber_text).properties(height=64 * len(shown_methods) + 36),
         use_container_width=True,
     )
     st.caption(
@@ -276,6 +284,18 @@ def show_strategy_grid(result) -> None:
             "AWSRE-nin seçimi.",
         )
     )
+
+
+    missing = [m for m in TRAINED_METHODS if m not in shown_methods]
+    if missing:
+        st.caption(
+            t(
+                "Not offered for this photo: {m}. The photo is too small for the 32×32 mark "
+                "with this method (DWT-SVD needs about 512 px on the short side).",
+                "Bu şəkil üçün təklif olunmur: {m}. Şəkil bu metodla 32×32 nişan üçün kiçikdir "
+                "(DWT-SVD üçün qısa tərəf təxminən 512 px olmalıdır).",
+            ).format(m=", ".join(missing))
+        )
 
 
 def show_measurement_table(comparison) -> None:
@@ -333,11 +353,11 @@ def show_measurement_table(comparison) -> None:
             t(
                 "A compared strategy was better on both real PSNR and real BER here: "
                 "AWSRE decides from predictions and lands on a best trade-off in "
-                "94.7% of the study's test cases, not all of them.",
+                "{hit} of the study's test cases, not all of them.",
                 "Burada müqayisə olunan strategiya həm real PSNR, həm də real BER-də "
                 "daha yaxşı çıxdı: AWSRE proqnoza əsasən qərar verir və tədqiqatın "
-                "test hallarının hamısında yox, 94,7%-də ən yaxşı kompromisə düşür.",
-            )
+                "test hallarının hamısında yox, {hit}-də ən yaxşı kompromisə düşür.",
+            ).format(hit=_pareto_hit_text())
             if beaten
             else t(
                 "No compared strategy beats AWSRE's choice on both PSNR and wrong bits.",
@@ -417,7 +437,10 @@ def show_compare_controls(entry_index: int, entry) -> None:
     st.markdown(t("**Compare with another strategy**", "**Başqa strategiya ilə müqayisə et**"))
     method_column, alpha_column, button_column = st.columns([1.2, 1, 1])
     with method_column:
-        other_method = st.selectbox(t("Method", "Metod"), TRAINED_METHODS, key="home_compare_method")
+        # Only the methods that fit this photo (all of them have predictions).
+        offered = [m for m in TRAINED_METHODS
+                   if m in set(entry["result"].recommendation.candidates["method"])]
+        other_method = st.selectbox(t("Method", "Metod"), offered, key="home_compare_method")
     with alpha_column:
         other_alpha = st.selectbox("α", TRAINED_ALPHAS, format_func=lambda a: f"{a:g}", key="home_compare_alpha")
     with button_column:
@@ -565,14 +588,18 @@ def show_real_world_table(rows, with_awsre: bool) -> None:
 
 def show_robust_comparison(index: int, entry) -> None:
     """AWSRE's choice next to the robust blind method, same photo, same attacks."""
+    blind_note = (
+        t(" (DCT-QIM is the exception: it is blind)", " (DCT-QIM istisnadır: o, kor metoddur)")
+        if "DCT-QIM" in TRAINED_METHODS else ""
+    )
     st.markdown(t(
-        "The 3 methods AWSRE chooses from need the original to verify and do not survive "
-        "cropping. The separate **robust method** (not one of the 15 strategies, no "
+        "The {k} methods AWSRE chooses from need the original to verify{b} and do not survive "
+        "cropping. The separate **robust method** (not one of the {n} strategies, no "
         "predictions) is verified without the original. Compare both on real-world attacks:",
-        "AWSRE-nin seçdiyi 3 metod yoxlama üçün orijinal tələb edir və kəsməyə dözmür. Ayrıca "
-        "**dayanıqlı metod** (15 strategiyadan biri deyil, proqnozu yoxdur) orijinalsız yoxlanılır. "
+        "AWSRE-nin seçdiyi {k} metod yoxlama üçün orijinal tələb edir{b} və kəsməyə dözmür. Ayrıca "
+        "**dayanıqlı metod** ({n} strategiyadan biri deyil, proqnozu yoxdur) orijinalsız yoxlanılır. "
         "Hər ikisini real həyat hücumlarında müqayisə edin:",
-    ))
+    ).format(k=len(TRAINED_METHODS), n=len(TRAINED_METHODS) * len(TRAINED_ALPHAS), b=blind_note))
     if entry.get("real_world") is None:
         if not st.button(
             t("Compare with the robust method", "Dayanıqlı metodla müqayisə et"),
