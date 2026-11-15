@@ -32,14 +32,11 @@ import pandas as pd
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 _PRIMARY_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results"
-_FIVE_METHOD_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results_v2_5methods"
 _BACKUP_RESULTS_DIR = PROJECT_ROOT / "experiments" / "scientific_results_v1_backup_3methods"
 
-# Hugging Face model repositories, newest first. The 5-method models
-# (research/five_method/) go to the first one; the dissertation's 3-method
-# models stay in the second as a fallback, so the site keeps working even
-# before (or without) the 5-method upload.
-FIVE_METHOD_MODEL_REPO = "avaqifli/awsre-models-5methods"
+# Hugging Face model repository. The site uses the dissertation's
+# 3-method models (decision 2026-11-15). The 5-method (+DCT-QIM) run in
+# research/five_method/ is reported as a limitation, not used for picks.
 THREE_METHOD_MODEL_REPO = "avaqifli/awsre-models"
 
 
@@ -49,11 +46,9 @@ def _has_models(folder: Path) -> bool:
 
 def _resolve_results_dir() -> Path:
     """Use the first results directory that holds a trained
-    model_metadata.json: a local full run, then the 5-method models, then
-    the dissertation's 3-method models. No file is copied or moved; this
-    only decides which directory to read models from.
-    """
-    for folder in (_PRIMARY_RESULTS_DIR, _FIVE_METHOD_RESULTS_DIR, _BACKUP_RESULTS_DIR):
+    model_metadata.json: a local full run, then the dissertation's 3-method
+    models. No file is copied or moved."""
+    for folder in (_PRIMARY_RESULTS_DIR, _BACKUP_RESULTS_DIR):
         if _has_models(folder):
             return folder
     return _PRIMARY_RESULTS_DIR
@@ -61,26 +56,11 @@ def _resolve_results_dir() -> Path:
 
 def _download_models_if_missing() -> None:
     """On the hosted website the trained models are not in the code
-    repository (they are large); fetch them once from Hugging Face. The
-    5-method repository is tried first; if it does not exist yet, the
-    3-method models are downloaded instead."""
-    if _has_models(_PRIMARY_RESULTS_DIR) or _has_models(_FIVE_METHOD_RESULTS_DIR):
+    repository (they are large); fetch them once from Hugging Face."""
+    if _has_models(_PRIMARY_RESULTS_DIR) or _has_models(_BACKUP_RESULTS_DIR):
         return
     from huggingface_hub import snapshot_download
 
-    # Tried even when the 3-method models are already on disk, so a running
-    # site picks up the 5-method models after a reboot once they exist.
-    try:
-        snapshot_download(
-            repo_id=FIVE_METHOD_MODEL_REPO,
-            local_dir=str(_FIVE_METHOD_RESULTS_DIR / "models"),
-        )
-        if _has_models(_FIVE_METHOD_RESULTS_DIR):
-            return
-    except Exception:
-        pass
-    if _has_models(_BACKUP_RESULTS_DIR):
-        return
     snapshot_download(
         repo_id=THREE_METHOD_MODEL_REPO,
         local_dir=str(_BACKUP_RESULTS_DIR / "models"),

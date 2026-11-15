@@ -225,7 +225,13 @@ def show_limitations_and_future_work() -> None:
             "- **The methods AWSRE chooses from need the original photo to verify** (non-blind; "
             "DCT-QIM, when included, is the exception), "
             "and rotation or cropping destroys their mark. The separate robust mode (below) is "
-            "verified without the original, but it is not part of the ML recommender.",
+            "verified without the original, but it is not part of the ML recommender.\n"
+            "- **More methods did not help.** A follow-up run with 6 methods (DCT, DWT, DCT-SVD, "
+            "DWT-SVD, BLOCK-SVD, DCT-QIM; 30 strategies; 816,000 measurements on 800 host images) "
+            "was retrained and tested the same way. AWSRE reached the real Pareto front in 94.1% of "
+            "320 test contexts, while the fixed strategy DWT α = 15 reached it in 100%. The mean BER "
+            "prediction got weaker (R² 0.79) and AWSRE picked DCT in 96% of cases, whereas the "
+            "measurements favour DWT in 29%. The site therefore keeps the 3-method models.",
             "- **Bir strategiya üstünlük təşkil edir.** Vaxt meyarı olmadan (yalnız MSE və BER) AWSRE "
             "320 test kontekstindən 318-də DCT α = 15 seçir. Proqnoz əvəzinə real ölçmələrdən istifadə "
             "edən oracle da onların 84%-də DCT α = 15 seçir, yəni bu, modelin meyli deyil, verilənlərin "
@@ -233,7 +239,13 @@ def show_limitations_and_future_work() -> None:
             "- **AWSRE-nin seçdiyi metodlar yoxlama üçün orijinal şəkil tələb edir** (kor olmayan; "
             "DCT-QIM, əgər daxildirsə, istisnadır), "
             "fırlatma və kəsmə isə onların nişanını məhv edir. Ayrıca dayanıqlı rejim (aşağıda) "
-            "orijinalsız yoxlanılır, lakin ML tövsiyə sisteminin hissəsi deyil.",
+            "orijinalsız yoxlanılır, lakin ML tövsiyə sisteminin hissəsi deyil.\n"
+            "- **Daha çox metod nəticəni yaxşılaşdırmadı.** 6 metodla (DCT, DWT, DCT-SVD, DWT-SVD, "
+            "BLOCK-SVD, DCT-QIM; 30 strategiya; 800 əsas şəkil üzrə 816 000 ölçmə) təkrar təcrübə "
+            "aparıldı, modellər eyni qaydada öyrədilib test olundu. AWSRE 320 test kontekstinin "
+            "94,1%-ində real Pareto cəbhəsinə düşdü, sabit DWT α = 15 isə 100%-ində. Orta BER "
+            "proqnozu zəiflədi (R² 0,79), AWSRE halların 96%-ində DCT seçdi, halbuki ölçmələrə görə "
+            "29% halda DWT daha yaxşıdır. Buna görə sayt 3 metodlu modellərlə işləyir.",
         )
     )
 
@@ -243,7 +255,7 @@ def show_limitations_and_future_work() -> None:
             "- **Context-aware choice:** let the use case set the priority, e.g. medical images → "
             "high PSNR, military images → low BER.\n"
             "- **Attack scenarios:** choose the strategy for the attacks a photo is expected to face.\n"
-            "- **More embedding methods,** so the recommender has more real alternatives to choose from.\n"
+            "- **A stronger BER model** (e.g. attack-specific features or more data), so that adding embedding methods actually improves the choice.\n"
             "- **A unique watermark per user (traceability):** the robust mode already carries a 32-bit "
             "ID; the next step is to give every recipient their own ID automatically and keep a "
             "register, so a leaked copy can be traced back to the person it was given to.\n"
@@ -253,8 +265,8 @@ def show_limitations_and_future_work() -> None:
             "- **Kontekstə görə seçim:** istifadə sahəsi prioriteti təyin etsin, məsələn tibbi "
             "şəkillər → yüksək PSNR, hərbi şəkillər → aşağı BER.\n"
             "- **Hücum ssenariləri:** strategiyanı şəklin qarşılaşacağı hücumlara görə seçmək.\n"
-            "- **Daha çox yerləşdirmə metodu,** ki tövsiyə sistemi seçmək üçün daha çox real alternativə "
-            "malik olsun.\n"
+            "- **Daha güclü BER modeli** (məs. hücuma xas xüsusiyyətlər və ya daha çox məlumat), "
+            "ki yeni metodlar əlavə etmək seçimi həqiqətən yaxşılaşdırsın.\n"
             "- **Hər istifadəçiyə unikal su nişanı (izlənə bilmə):** dayanıqlı rejim artıq 32-bit ID "
             "daşıyır; növbəti addım hər alıcıya avtomatik öz ID-sini vermək və reyestr saxlamaqdır ki, "
             "sızan nüsxənin kimə verildiyi müəyyən edilə bilsin.\n"
