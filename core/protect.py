@@ -26,8 +26,9 @@ Two choices worth knowing when explaining the results:
    are computed for this scrambled pattern, because that is what is
    actually embedded.
 
-Extraction is non-blind for all trained methods: verify() needs the
-original photo.
+Extraction is non-blind for the trained methods except DCT-QIM (when the
+models include it); verify() still asks for the original photo, which
+the non-blind methods need.
 """
 
 from __future__ import annotations
@@ -40,7 +41,9 @@ import numpy as np
 
 from core.feature_extraction import extract_host_features, extract_watermark_features
 from core.recommender import (
+    TRAINED_ALPHAS,
     TRAINED_METHODS,
+    method_fits,
     WATERMARK_FEATURE_SIZE,
     Recommendation,
     predict_attack_outcomes,
@@ -399,25 +402,41 @@ def verify(
     suspect_luma, _ = _split_luma(suspect_rgb)
 
     difference = float(np.mean(np.abs(original_luma.astype(np.float32) - suspect_luma.astype(np.float32))))
-    if difference < IDENTICAL_DIFFERENCE:
+    if difference == 0.0:
         return VerifyResult(False, True, None, 0.5, None, {})
 
     embedded_bits = scramble(mark, key)
     per_method_ber = {}
     best = (None, 1.0, None)
 
+    height, width = original_luma.shape[:2]
     for method in methods or TRAINED_METHODS:
-        algorithm = create_watermarker(method)
-        extracted = np.asarray(
-            algorithm.extract(original_luma, suspect_luma, embedded_bits.shape).extracted_watermark
-        )
-        extracted = (extracted >= (0.5 if extracted.max() <= 1 else 127.5)).astype(np.uint8)
-        ber = float(calculate_ber(embedded_bits, extracted))
-        per_method_ber[method] = ber
-        if ber < best[1]:
-            best = (method, ber, scramble(extracted, key))
+        if not method_fits(method, height, width):
+            continue
+        # The non-blind methods decode by comparing with the original, which
+        # does not depend on alpha. DCT-QIM is blind and its quantisation
+        # step IS alpha, so every trained alpha is tried for it.
+        alphas = TRAINED_ALPHAS if method == "DCT-QIM" else [None]
+        for alpha in alphas:
+            algorithm = create_watermarker(method) if alpha is None else create_watermarker(method, alpha=float(alpha))
+            try:
+                extracted = np.asarray(
+                    algorithm.extract(original_luma, suspect_luma, embedded_bits.shape).extracted_watermark
+                )
+            except Exception:
+                continue
+            extracted = (extracted >= (0.5 if extracted.max() <= 1 else 127.5)).astype(np.uint8)
+            ber = float(calculate_ber(embedded_bits, extracted))
+            per_method_ber[method] = min(ber, per_method_ber.get(method, 1.0))
+            if ber < best[1]:
+                best = (method, ber, scramble(extracted, key))
 
     method, ber, recovered_mark = best
+    # A weak mark (small alpha on a large photo) changes the photo very
+    # little, so "almost identical to the original" is only reported when
+    # no extractor finds the mark.
+    if ber > FOUND_BER_THRESHOLD and difference < IDENTICAL_DIFFERENCE:
+        return VerifyResult(False, True, None, 0.5, None, {})
     return VerifyResult(
         found=ber <= FOUND_BER_THRESHOLD,
         identical=False,
